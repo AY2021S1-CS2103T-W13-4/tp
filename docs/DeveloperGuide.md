@@ -52,14 +52,15 @@ This section describes some noteworthy details on how certain features are imple
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                                        |
+| Priority | As a …​                                    | I want to …​                                                   | So that I can…​                                 |
 | -------- | -------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | student              | have all modules' important dates in one place                         | never miss any event                                                   |
-| `* * *`  | student              | have information (name, description, time) about any important dates   | always know what to prepare                                            |
-| `* * *`  | student              | have all the tutorial/lab details (Zoom link, time) in one place       | easily find them when I need it                                        |
-| `* * *`  | forgetful student    | find the grading structure of a module                                 | better revise for each assignment / mid-term / exam                    |
-| `* *`    | student              | have all the module descriptions in one place                          | read them if I need to                                                 |
-| `*`      | struggling student   | access the contact information of my TA/Prof                           | ask question or schedule a consultation                                |
+| `* * *`  | new user             | see the application usage instructions                                 | quickly look up for certain features I forget                          |
+| `* * *`  | student              | view the important dates of a module                                   | never miss any event                                                   |
+| `* * *`  | student              | view information (name, description, time) about an important date     | always know what to prepare                                            |
+| `* * *`  | student              | view the tutorial/lab details                                          |                                                                        |
+| `* * *`  | forgetful student    | find the grading structure of a module                                 | better revise for each assignment/mid-term/exam                        |
+| `* *`    | student              | view the description of a module                                       |                                                                        |
+| `* *`    | struggling student   | access the contact information of my TA/Professor                      | ask questions or schedule a consultation                               |
 
 ### Use cases
 
@@ -69,10 +70,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list the modules
-2.  TrackIt@NUS shows a list of all modules
-3.  User requests to find the grading structure of a module in the list
-4.  TrackIt@NUS shows the requested grading structure
+1.  User requests to list the modules.
+2.  TrackIt@NUS shows a list of all modules.
+3.  User requests to find the grading structure of a module in the list.
+4.  TrackIt@NUS shows the requested grading structure.
 
     Use case ends.
 
