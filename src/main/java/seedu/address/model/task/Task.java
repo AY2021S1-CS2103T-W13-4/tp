@@ -11,7 +11,7 @@ import seedu.address.model.commons.Name;
 
 /**
  * Represents a Task in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated and immutable.
  */
 public class Task {
     public static final String TYPE = "T";
