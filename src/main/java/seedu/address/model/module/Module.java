@@ -15,33 +15,33 @@ public class Module {
     public static final String TYPE = "M";
 
     private final Code code;
-    private final Name title;
-    private final String gradeDist;
+    private final Name name;
+    private final String desc;
 
     /**
      * Every field must be present and not null.
      *
      * @param code
      * @param name
-     * @param gradeDist
+     * @param desc
      */
-    public Module(Code code, Name name, String gradeDist) {
-        requireAllNonNull(code, name, gradeDist);
+    public Module(Code code, Name name, String desc) {
+        requireAllNonNull(code, name, desc);
         this.code = code;
-        this.title = name;
-        this.gradeDist = gradeDist;
+        this.name = name;
+        this.desc = desc;
     }
 
     public Code getCode() {
         return code;
     }
 
-    public Name getTitle() {
-        return title;
+    public Name getName() {
+        return name;
     }
 
-    public String getGradeDist() {
-        return gradeDist;
+    public String getDesc() {
+        return desc;
     }
 
     @Override
@@ -56,14 +56,14 @@ public class Module {
 
         Module otherLesson = (Module) other;
         return otherLesson.code.equals(code)
-            && otherLesson.title.equals(title)
-            && otherLesson.gradeDist.equals(gradeDist);
+            && otherLesson.name.equals(name)
+            && otherLesson.desc.equals(desc);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(code, title, gradeDist);
+        return Objects.hash(code, name, desc);
     }
 
     @Override

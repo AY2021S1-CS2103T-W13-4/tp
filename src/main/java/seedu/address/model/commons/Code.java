@@ -9,13 +9,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Code {
     public static final String MESSAGE_CONSTRAINTS =
-        "Module code should start with 2 or 3 upper-case letters, follow by 4 numeric digits";
+        "Module code should start with 2 or 3 upper-case letters, follow by 4 numeric digits and optionally a single "
+            + "letter";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^[A-Z]{2,3}[0-9]{4}$";
+    public static final String VALIDATION_REGEX = "^[A-Z]{2,3}[0-9]{4}[A-Z]?$";
 
     public final String code;
 

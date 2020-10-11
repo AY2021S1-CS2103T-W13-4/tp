@@ -16,12 +16,22 @@ import seedu.address.logic.commands.contact.DeleteContactCommand;
 import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.commands.contact.FindContactCommand;
 import seedu.address.logic.commands.contact.ListContactCommand;
+import seedu.address.logic.commands.module.AddModuleCommand;
+import seedu.address.logic.commands.module.DeleteModuleCommand;
+import seedu.address.logic.commands.module.EditModuleCommand;
+import seedu.address.logic.commands.module.ListModuleCommand;
+import seedu.address.logic.commands.module.ViewModuleCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
 import seedu.address.logic.parser.contact.DeleteContactCommandParser;
 import seedu.address.logic.parser.contact.EditContactCommandParser;
 import seedu.address.logic.parser.contact.FindContactCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.module.AddModuleCommandParser;
+import seedu.address.logic.parser.module.DeleteModuleCommandParser;
+import seedu.address.logic.parser.module.EditModuleCommandParser;
+import seedu.address.logic.parser.module.ViewModuleCommandParser;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.module.Module;
 
 /**
  * Parses user input.
@@ -71,6 +81,26 @@ public class TrackIterParser {
 
             case ListContactCommand.COMMAND_WORD:
                 return new ListContactCommand();
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
+        case Module.TYPE:
+            switch (commandWord) {
+            case AddModuleCommand.COMMAND_WORD:
+                return new AddModuleCommandParser().parse(arguments);
+
+            case EditModuleCommand.COMMAND_WORD:
+                return new EditModuleCommandParser().parse(arguments);
+
+            case DeleteModuleCommand.COMMAND_WORD:
+                return new DeleteModuleCommandParser().parse(arguments);
+
+            case ViewModuleCommand.COMMAND_WORD:
+                return new ViewModuleCommandParser().parse(arguments);
+
+            case ListModuleCommand.COMMAND_WORD:
+                return new ListModuleCommand();
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.commons.Code;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.module.Module;
@@ -145,6 +148,17 @@ public class ModelManager implements Model {
     public boolean hasModule(Module task) {
         requireNonNull(task);
         return trackIter.hasModule(task);
+    }
+
+    @Override
+    public Optional<Module> getModule(Code code) {
+        List<Module> allModules = trackIter.getModuleList();
+        for (Module module : allModules) {
+            if (module.getCode().equals(code)) {
+                return Optional.of(module);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override

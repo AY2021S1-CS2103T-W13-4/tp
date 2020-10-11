@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTrackIter;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TrackIter;
+import seedu.address.model.commons.Code;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.module.Module;
@@ -155,6 +157,11 @@ public class AddContactCommandTest {
 
         @Override
         public boolean hasModule(Module task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Module> getModule(Code code) {
             throw new AssertionError("This method should not be called.");
         }
 

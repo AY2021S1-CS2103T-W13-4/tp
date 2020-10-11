@@ -45,7 +45,7 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditContactCommand.MESSAGE_USAGE), pe);
+                EditContactCommand.MESSAGE_USAGE), pe);
         }
 
         EditContactDescriptor editPersonDescriptor = new EditContactDescriptor();

@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Address;
+import seedu.address.model.commons.Code;
 import seedu.address.model.commons.Name;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
@@ -121,5 +122,30 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String code} into an {@code Code}.
+     *
+     * @throws ParseException if the given {@code code} is invalid.
+     */
+    public static Code parseCode(String code) throws ParseException {
+        requireNonNull(code);
+        String trimmedCode = code.trim();
+        if (!Code.isValidCode(trimmedCode)) {
+            throw new ParseException(Code.MESSAGE_CONSTRAINTS);
+        }
+        return new Code(trimmedCode);
+    }
+
+    /**
+     * Parses a {@code String str} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code str} is invalid.
+     */
+    public static String parseString(String str) throws ParseException {
+        requireNonNull(str);
+        return str.trim();
     }
 }

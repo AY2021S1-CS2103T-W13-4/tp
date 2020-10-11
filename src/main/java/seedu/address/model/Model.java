@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.commons.Code;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.module.Module;
@@ -107,6 +109,11 @@ public interface Model {
      * Returns true if a module with the same identity as {@code module} exists in the TrackIter.
      */
     boolean hasModule(Module module);
+
+    /**
+     * Returns the Module with the provided code, wraps in an Optional
+     */
+    Optional<Module> getModule(Code code);
 
     /**
      * Deletes the given module.
