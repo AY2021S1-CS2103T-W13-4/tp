@@ -26,11 +26,11 @@ public class JsonTrackIterStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readTrackIter_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readTrackIter(null));
     }
 
-    private java.util.Optional<ReadOnlyTrackIter> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyTrackIter> readTrackIter(String filePath) throws Exception {
         return new JsonTrackIterStorage(Paths.get(filePath)).readTrackIter(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,27 +42,27 @@ public class JsonTrackIterStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readTrackIter("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatTrackIter.json"));
+        assertThrows(DataConversionException.class, () -> readTrackIter("notJsonFormatTrackIter.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonTrackIter.json"));
+    public void readTrackIter_invalidPersonTrackIter_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTrackIter("invalidPersonTrackIter.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonTrackIter.json"));
+    public void readTrackIter_invalidAndValidPersonTrackIter_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTrackIter("invalidAndValidPersonTrackIter.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveTrackIter_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempTrackIter.json");
         TrackIter original = getTypicalTrackIter();
         JsonTrackIterStorage jsonTrackIterStorage = new JsonTrackIterStorage(filePath);
 
@@ -87,24 +87,24 @@ public class JsonTrackIterStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveTrackIter_nullTrackIter_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTrackIter(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code trackIter} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyTrackIter addressBook, String filePath) {
+    private void saveTrackIter(ReadOnlyTrackIter trackIter, String filePath) {
         try {
             new JsonTrackIterStorage(Paths.get(filePath))
-                .saveTrackIter(addressBook, addToTestDataPathIfNotNull(filePath));
+                .saveTrackIter(trackIter, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new TrackIter(), null));
+    public void saveTrackIter_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTrackIter(new TrackIter(), null));
     }
 }

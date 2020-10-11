@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTrackIterFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setTrackIterFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTrackIterFilePath_validPath_setsTrackIterFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTrackIterFilePath(path);
         assertEquals(path, modelManager.getTrackIterFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInTrackIter_returnsFalse() {
         assertFalse(modelManager.hasContact(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInTrackIter_returnsTrue() {
         modelManager.addContact(ALICE);
         assertTrue(modelManager.hasContact(ALICE));
     }

@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 public class ClearContactCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyTrackIter_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearContactCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyTrackIter_success() {
         Model model = new ModelManager(getTypicalTrackIter(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTrackIter(), new UserPrefs());
         expectedModel.setTrackIter(new TrackIter());

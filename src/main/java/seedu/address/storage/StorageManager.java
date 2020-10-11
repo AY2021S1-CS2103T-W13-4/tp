@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTrackIter(ReadOnlyTrackIter addressBook) throws IOException {
-        saveTrackIter(addressBook, trackIterStorage.getTrackIterFilePath());
+    public void saveTrackIter(ReadOnlyTrackIter trackIter) throws IOException {
+        saveTrackIter(trackIter, trackIterStorage.getTrackIterFilePath());
     }
 
     @Override
-    public void saveTrackIter(ReadOnlyTrackIter addressBook, Path filePath) throws IOException {
+    public void saveTrackIter(ReadOnlyTrackIter trackIter, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        trackIterStorage.saveTrackIter(addressBook, filePath);
+        trackIterStorage.saveTrackIter(trackIter, filePath);
     }
 
 }

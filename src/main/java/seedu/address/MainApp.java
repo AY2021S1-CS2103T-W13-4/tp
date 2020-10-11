@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyTrackIter> addressBookOptional;
+        Optional<ReadOnlyTrackIter> trackIterOptional;
         ReadOnlyTrackIter initialData;
         try {
-            addressBookOptional = storage.readTrackIter();
-            if (!addressBookOptional.isPresent()) {
+            trackIterOptional = storage.readTrackIter();
+            if (!trackIterOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TrackIter");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTrackIter);
+            initialData = trackIterOptional.orElseGet(SampleDataUtil::getSampleTrackIter);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TrackIter");
             initialData = new TrackIter();

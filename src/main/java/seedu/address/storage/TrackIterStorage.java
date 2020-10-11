@@ -35,14 +35,14 @@ public interface TrackIterStorage {
     /**
      * Saves the given {@link ReadOnlyTrackIter} to the storage.
      *
-     * @param addressBook cannot be null.
+     * @param trackIter cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveTrackIter(ReadOnlyTrackIter addressBook) throws IOException;
+    void saveTrackIter(ReadOnlyTrackIter trackIter) throws IOException;
 
     /**
      * @see #saveTrackIter(ReadOnlyTrackIter)
      */
-    void saveTrackIter(ReadOnlyTrackIter addressBook, Path filePath) throws IOException;
+    void saveTrackIter(ReadOnlyTrackIter trackIter, Path filePath) throws IOException;
 
 }

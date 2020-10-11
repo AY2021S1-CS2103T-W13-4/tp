@@ -41,10 +41,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTrackIterStorage addressBookStorage =
-            new JsonTrackIterStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonTrackIterStorage trackIterStorage =
+            new JsonTrackIterStorage(temporaryFolder.resolve("trackIter.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(trackIterStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -69,11 +69,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTrackIterIoExceptionThrowingStub
-        JsonTrackIterStorage addressBookStorage =
-            new JsonTrackIterIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonTrackIterStorage trackIterStorage =
+            new JsonTrackIterIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTrackIter.json"));
         JsonUserPrefsStorage userPrefsStorage =
             new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(trackIterStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -158,7 +158,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTrackIter(ReadOnlyTrackIter addressBook, Path filePath) throws IOException {
+        public void saveTrackIter(ReadOnlyTrackIter trackIter, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

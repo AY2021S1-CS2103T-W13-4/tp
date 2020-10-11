@@ -4,7 +4,7 @@ import seedu.address.model.TrackIter;
 import seedu.address.model.contact.Contact;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Trackiter objects.
  * Example usage: <br>
  * {@code TrackIter ab = new TrackIterBuilder().withContact("John", "Doe").build();}
  */

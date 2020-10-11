@@ -60,8 +60,8 @@ public class JsonTrackIterStorage implements TrackIterStorage {
     }
 
     @Override
-    public void saveTrackIter(ReadOnlyTrackIter addressBook) throws IOException {
-        saveTrackIter(addressBook, filePath);
+    public void saveTrackIter(ReadOnlyTrackIter trackIter) throws IOException {
+        saveTrackIter(trackIter, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonTrackIterStorage implements TrackIterStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTrackIter(ReadOnlyTrackIter addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTrackIter(ReadOnlyTrackIter trackIter, Path filePath) throws IOException {
+        requireNonNull(trackIter);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTrackIter(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTrackIter(trackIter), filePath);
     }
 
 }

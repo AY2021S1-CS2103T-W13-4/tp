@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "TrackIter save file which contains the same Person values as in TypicalPersons#getTypicalTrackIter()",
   "contacts": [
     {
       "name": "Alice Pauline",

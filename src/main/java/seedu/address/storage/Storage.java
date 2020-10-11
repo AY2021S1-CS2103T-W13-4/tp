@@ -27,6 +27,6 @@ public interface Storage extends TrackIterStorage, UserPrefsStorage {
     Optional<ReadOnlyTrackIter> readTrackIter() throws DataConversionException, IOException;
 
     @Override
-    void saveTrackIter(ReadOnlyTrackIter addressBook) throws IOException;
+    void saveTrackIter(ReadOnlyTrackIter trackIter) throws IOException;
 
 }

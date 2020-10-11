@@ -16,7 +16,7 @@ import seedu.address.model.contact.Contact;
 /**
  * An Immutable TrackIter that is serializable to JSON format.gi
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "trackiter")
 class JsonSerializableTrackIter {
 
     public static final String MESSAGE_DUPLICATE_CONTACT = "Persons list contains duplicate contact(s).";
