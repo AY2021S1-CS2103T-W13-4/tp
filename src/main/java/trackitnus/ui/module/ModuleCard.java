@@ -45,7 +45,6 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         code.setText(module.getCode().code);
         name.setText(module.getName().fullName);
-        desc.setText(module.getDesc());
     }
 
     @Override

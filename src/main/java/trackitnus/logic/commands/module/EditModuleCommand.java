@@ -61,9 +61,8 @@ public class EditModuleCommand extends Command {
 
         Code originalCode = moduleToEdit.getCode();
         Name updatedName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
-        String updatedDesc = editModuleDescriptor.getDesc().orElse(moduleToEdit.getDesc());
 
-        return new Module(originalCode, updatedName, updatedDesc);
+        return new Module(originalCode, updatedName);
     }
 
     @Override

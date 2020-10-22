@@ -17,17 +17,14 @@ public class JsonAdaptedModule {
 
     private final String code;
     private final String name;
-    private final String desc;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
      */
     @JsonCreator
-    public JsonAdaptedModule(@JsonProperty("code") String code, @JsonProperty("name") String name,
-                             @JsonProperty("desc") String desc) {
+    public JsonAdaptedModule(@JsonProperty("code") String code, @JsonProperty("name") String name) {
         this.code = code;
         this.name = name;
-        this.desc = desc;
     }
 
     /**
@@ -36,7 +33,6 @@ public class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         code = source.getCode().code;
         name = source.getName().fullName;
-        desc = source.getDesc();
     }
 
     /**
@@ -62,12 +58,7 @@ public class JsonAdaptedModule {
         }
         final Name modelName = new Name(name);
 
-        if (desc == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Description"));
-        }
-        final String modelDesc = desc;
-
-        return new Module(modelCode, modelName, modelDesc);
+        return new Module(modelCode, modelName);
     }
 
 }
