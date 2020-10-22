@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import trackitnus.logic.commands.module.DeleteModuleCommand;
 import trackitnus.logic.parser.CommandParserTestUtil;
-import trackitnus.model.commons.Code;
+import trackitnus.testutil.TypicalIndexes;
 
 public class DeleteModuleCommandParserTest {
     private final DeleteModuleCommandParser parser = new DeleteModuleCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        DeleteModuleCommand expectedCommand = new DeleteModuleCommand(new Code("CS1231S"));
-        CommandParserTestUtil.assertParseSuccess(parser, " m/CS1231S", expectedCommand);
+        DeleteModuleCommand expectedCommand = new DeleteModuleCommand(TypicalIndexes.INDEX_FIRST_CONTACT);
+        CommandParserTestUtil.assertParseSuccess(parser, "1", expectedCommand);
     }
 
 }
