@@ -1,7 +1,6 @@
 package trackitnus.logic.parser.module;
 
 import static trackitnus.logic.parser.CliSyntax.PREFIX_CODE;
-import static trackitnus.logic.parser.CliSyntax.PREFIX_DESC;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
@@ -39,16 +38,15 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
      */
     public AddModuleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_DESC);
+            ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_NAME, PREFIX_DESC)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_CODE, PREFIX_NAME)) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 AddModuleCommand.MESSAGE_USAGE));
         }
 
         Code code = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        String desc = ParserUtil.parseString(argMultimap.getValue(PREFIX_DESC).get());
 
         Module module = new Module(code, name);
 

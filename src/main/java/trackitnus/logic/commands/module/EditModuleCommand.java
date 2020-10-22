@@ -2,13 +2,14 @@ package trackitnus.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_CODE;
-import static trackitnus.logic.parser.CliSyntax.PREFIX_DESC;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackitnus.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import java.util.List;
 import java.util.Optional;
 
 import trackitnus.commons.core.Messages;
+import trackitnus.commons.core.index.Index;
 import trackitnus.commons.util.CollectionUtil;
 import trackitnus.logic.commands.Command;
 import trackitnus.logic.commands.CommandResult;
@@ -28,26 +29,25 @@ public class EditModuleCommand extends Command {
         + "Parameters: "
         + PREFIX_CODE + "CODE (must be an existing code) "
         + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_DESC + "DESC] "
-        + String.format("Example: %s %s %sCS1231S %sDiscrete Structures %sIntroductory mathematical tools",
-        Module.TYPE, COMMAND_WORD, PREFIX_CODE, PREFIX_NAME, PREFIX_DESC);
+        + String.format("Example: %s %s %sCS1231S %sDiscrete Structures",
+        Module.TYPE, COMMAND_WORD, PREFIX_CODE, PREFIX_NAME);
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists";
 
-    private final Code code;
+    private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;
 
     /**
-     * @param code                 of the module in the filtered module list to edit
+     * @param index                of the module in the filtered module list to edit
      * @param editModuleDescriptor details to edit the module with
      */
-    public EditModuleCommand(Code code, EditModuleDescriptor editModuleDescriptor) {
-        requireNonNull(code);
+    public EditModuleCommand(Index index, EditModuleDescriptor editModuleDescriptor) {
+        requireNonNull(index);
         requireNonNull(editModuleDescriptor);
 
-        this.code = code;
+        this.index = index;
         this.editModuleDescriptor = new EditModuleDescriptor(editModuleDescriptor);
     }
 
@@ -59,27 +59,29 @@ public class EditModuleCommand extends Command {
                                              EditModuleDescriptor editModuleDescriptor) {
         assert moduleToEdit != null;
 
-        Code originalCode = moduleToEdit.getCode();
+        Code updatedCode = editModuleDescriptor.getCode().orElse(moduleToEdit.getCode());
         Name updatedName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
 
-        return new Module(originalCode, updatedName);
+        return new Module(updatedCode, updatedName);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Optional<Module> moduleToEdit = model.getModule(code);
-        if (moduleToEdit.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_MODULE_DOES_NOT_EXIST);
+        List<Module> lastShownList = model.getFilteredModuleList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Module editedModule = createEditedModule(moduleToEdit.get(), editModuleDescriptor);
+        Module moduleToEdit = lastShownList.get(index.getZeroBased());
+        Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
 
-        if (!moduleToEdit.get().isSameModule(editedModule) && model.hasModule(editedModule)) {
+        if (!moduleToEdit.isSameModule(editedModule) && model.hasModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.setModule(moduleToEdit.get(), editedModule);
+        model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
@@ -98,7 +100,7 @@ public class EditModuleCommand extends Command {
 
         // state check
         EditModuleCommand e = (EditModuleCommand) other;
-        return code.equals(e.code)
+        return index.equals(e.index)
             && editModuleDescriptor.equals(e.editModuleDescriptor);
     }
 
@@ -110,7 +112,6 @@ public class EditModuleCommand extends Command {
 
         private Code code;
         private Name name;
-        private String desc;
 
         public EditModuleDescriptor() {
         }
@@ -121,14 +122,13 @@ public class EditModuleCommand extends Command {
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
             setCode(toCopy.code);
             setName(toCopy.name);
-            setDesc(toCopy.desc);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, desc);
+            return CollectionUtil.isAnyNonNull(code, name);
         }
 
         @Override
@@ -147,8 +147,7 @@ public class EditModuleCommand extends Command {
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
             return getCode().equals(e.getCode())
-                && getName().equals(e.getName())
-                && getDesc().equals(e.getDesc());
+                && getName().equals(e.getName());
         }
 
         public Optional<Code> getCode() {
@@ -167,12 +166,5 @@ public class EditModuleCommand extends Command {
             this.name = name;
         }
 
-        public Optional<String> getDesc() {
-            return Optional.ofNullable(desc);
-        }
-
-        public void setDesc(String desc) {
-            this.desc = desc;
-        }
     }
 }

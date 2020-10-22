@@ -2,17 +2,16 @@ package trackitnus.logic.parser.module;
 
 import static java.util.Objects.requireNonNull;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_CODE;
-import static trackitnus.logic.parser.CliSyntax.PREFIX_DESC;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_NAME;
 
 import trackitnus.commons.core.Messages;
+import trackitnus.commons.core.index.Index;
 import trackitnus.logic.commands.module.EditModuleCommand;
 import trackitnus.logic.parser.ArgumentMultimap;
 import trackitnus.logic.parser.ArgumentTokenizer;
 import trackitnus.logic.parser.Parser;
 import trackitnus.logic.parser.ParserUtil;
 import trackitnus.logic.parser.exceptions.ParseException;
-import trackitnus.model.commons.Code;
 
 /**
  * Parses input arguments and creates a new EditModuleCommand object
@@ -28,33 +27,29 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME, PREFIX_DESC);
+            ArgumentTokenizer.tokenize(args, PREFIX_CODE, PREFIX_NAME);
 
-        Code code;
+        Index index;
 
         try {
-            if (argMultimap.getValue(PREFIX_CODE).isEmpty()) {
-                throw new ParseException("No module code is provided");
-            }
-            code = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
         EditModuleCommand.EditModuleDescriptor editModuleDescriptor = new EditModuleCommand.EditModuleDescriptor();
+        if (argMultimap.getValue(PREFIX_CODE).isPresent()) {
+            editModuleDescriptor.setCode(ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get()));
+        }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_DESC).isPresent()) {
-            editModuleDescriptor.setDesc(ParserUtil.parseString(argMultimap.getValue(PREFIX_DESC).get()));
-        }
-
         if (!editModuleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditModuleCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditModuleCommand(code, editModuleDescriptor);
+        return new EditModuleCommand(index, editModuleDescriptor);
     }
 
 }

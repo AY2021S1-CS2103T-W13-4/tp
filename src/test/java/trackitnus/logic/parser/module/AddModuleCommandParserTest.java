@@ -16,7 +16,7 @@ public class AddModuleCommandParserTest {
         AddModuleCommand expectedCommand = new AddModuleCommand(new Module(new Code("CS1231S"), new Name("Discrete "
             + "Structures")));
 
-        CommandParserTestUtil.assertParseSuccess(parser, " n/Discrete Structures m/CS1231S d/Sample", expectedCommand);
+        CommandParserTestUtil.assertParseSuccess(parser, " n/Discrete Structures m/CS1231S", expectedCommand);
 //        assertParseSuccess(parser, " 1 n/Discrete Structures m/CS1231S d/Sample", expectedCommand);
     }
 

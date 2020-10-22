@@ -2,7 +2,6 @@ package trackitnus.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_CODE;
-import static trackitnus.logic.parser.CliSyntax.PREFIX_DESC;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_NAME;
 
 import trackitnus.logic.commands.Command;
@@ -17,8 +16,7 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = Module.TYPE + " " + COMMAND_WORD + ": Adds a module to the app "
         + "Parameters: "
         + PREFIX_CODE + "CODE "
-        + PREFIX_NAME + "NAME "
-        + PREFIX_DESC + "DESCRIPTION ";
+        + PREFIX_NAME + "NAME ";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists";
