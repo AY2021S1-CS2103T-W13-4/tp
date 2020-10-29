@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.shape.Line?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150"/>
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="75" GridPane.columnIndex="0">
+            <padding>
+                <Insets top="1" right="5" bottom="1" left="15"/>
+            </padding>
+            <Label fx:id="sectionTitle" text="\$sectionTitle" styleClass="date_label"/>
+            <Line startX="0" startY="200" endX="500" endY="200" style="-fx-stroke: #8C8C89"/>
+            <ListView fx:id="taskListView" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="10"/>
+                </padding>
+            </ListView>
+        </VBox>
+    </GridPane>
+</HBox>

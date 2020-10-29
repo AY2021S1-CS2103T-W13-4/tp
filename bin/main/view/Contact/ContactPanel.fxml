@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Line?>
+<ListView xmlns:fx="http://javafx.com/fxml/1" fx:id="modulePanel" xmlns="http://javafx.com/javafx/8">
+    <VBox>
+        <padding>
+            <Insets top="1" right="5" bottom="1" left="15"/>
+        </padding>
+        <Label text="All Contacts" styleClass="date_label"/>
+        <Line startX="0" endX="500" style="-fx-stroke: #8C8C89"/>
+        <StackPane fx:id="contactListPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </StackPane>
+    </VBox>
+</ListView>

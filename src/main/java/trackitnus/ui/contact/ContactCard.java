@@ -48,8 +48,18 @@ public class ContactCard extends UiPart<Region> {
         this.contact = contact;
         id.setText("[" + displayedIndex + "] ");
         name.setText(contact.getName().value);
-        phone.setText(contact.getPhone().value);
-        email.setText(contact.getEmail().value);
+
+        if (contact.getPhone() == null) {
+            phone.setText("");
+        } else {
+            phone.setText(contact.getPhone().value);
+        }
+
+        if (contact.getEmail() == null) {
+            email.setText("");
+        } else {
+            email.setText(contact.getEmail().value);
+        }
         contact.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

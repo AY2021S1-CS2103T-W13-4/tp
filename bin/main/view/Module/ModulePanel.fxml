@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+
+<?import javafx.scene.control.ListView?>
+<ListView fx:id="modulePanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox>
+        <padding>
+            <Insets top="1" right="5" bottom="1" left="15"/>
+        </padding>
+        <HBox spacing="10" id="moduleHeader" fx:id="moduleHeader">
+            <padding>
+                <Insets bottom="5"/>
+            </padding>
+            <Label fx:id="header" text="\$header" styleClass="module_big_label"/>
+        </HBox>
+        <Line startX="0" endX="500" style="-fx-stroke: #8C8C89"/>
+        <StackPane fx:id="lessonListPanelPlaceholder" styleClass="pane-with-border">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </StackPane>
+        <Label text="Tasks" styleClass="date_label"/>
+        <Line startX="0" endX="500" style="-fx-stroke: #8C8C89"/>
+
+        <StackPane fx:id="taskListPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </StackPane>
+        <Label text="Contacts" styleClass="date_label"/>
+        <Line startX="0" endX="500" style="-fx-stroke: #8C8C89"/>
+        <StackPane fx:id="contactListPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets bottom="10"/>
+            </padding>
+        </StackPane>
+    </VBox>
+</ListView>

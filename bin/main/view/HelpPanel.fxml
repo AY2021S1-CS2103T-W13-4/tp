@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+<ListView fx:id="HelpPanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox styleClass="help_panel" >
+        <padding>
+            <Insets top="1" right="5" bottom="1" left="15"/>
+        </padding>
+        <Label text="Let's Get You Started!" styleClass="date_label"/>
+        <Line startX="0" endX="500" style="-fx-stroke: #8C8C89"/>
+        <Text fx:id="intro" styleClass="help_intro"></Text>
+    </VBox>
+</ListView>

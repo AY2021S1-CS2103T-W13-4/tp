@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" styleClass="side-panel">
+    <Button fx:id="upcomingButton" styleClass="side-panel-button" onAction="#toggleUpcomingTab">
+        <padding>
+            <Insets top="20" right="5" bottom="8" left="19"/>
+        </padding>Upcoming</Button>
+    <Button fx:id="contactButton" styleClass="side-panel-button" onAction="#toggleContactTab">
+        <padding>
+            <Insets top="10" right="5" bottom="8" left="19"/>
+        </padding>Contacts</Button>
+    <ListView fx:id="moduleListView" prefWidth="20" styleClass="side-panel" VBox.vgrow="ALWAYS"/>
+    <Button fx:id="helpButton" onAction="#toggleHelpTab" >
+        <padding>
+            <Insets top="0" right="5" bottom="15" left="19"/>
+        </padding>Help</Button>
+
+</VBox>
+
+
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="placeHolder" styleClass="result-container" xmlns="http://javafx.com/javafx/8"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <TextArea fx:id="resultDisplay" editable="false" maxWidth="1.7976931348623157E308" styleClass="result-display"
+              text="Welcome to TrackIt@NUS. Click the Help button on the side menu if you're lost!" />
+</StackPane>
