@@ -41,7 +41,12 @@ public class AddModuleCommand extends Command {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.addModule(toAdd);
+        try {
+            model.addModule(toAdd);
+        } catch (CommandException ce) {
+            throw ce;
+        }
+
         return new CommandResult(String.format(Messages.MESSAGE_ADD_MODULE_SUCCESS, toAdd));
     }
 

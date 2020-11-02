@@ -110,6 +110,13 @@ public class TrackIter implements ReadOnlyTrackIter {
     }
 
     /**
+     * Returns true if the list has reached the maximum number of allowed modules.
+     */
+    public boolean reachedMaximumAllowedModuleSize() {
+        return modules.reachedMaximumAllowedSize();
+    }
+
+    /**
      * Adds a module to the address book.
      * The module must not already exist in the address book.
      */

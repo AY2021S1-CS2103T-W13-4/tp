@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import trackitnus.commons.core.Messages;
+import trackitnus.logic.commands.exceptions.CommandException;
 import trackitnus.model.Model;
 import trackitnus.model.ModelManager;
 import trackitnus.model.UserPrefs;
@@ -31,7 +32,11 @@ public class AddModuleCommandIntegrationTest {
         Module validModule = new ModuleBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTrackIter(), new UserPrefs());
-        expectedModel.addModule(validModule);
+        try {
+            expectedModel.addModule(validModule);
+        } catch (CommandException ce) {
+            assert(false);
+        }
 
         assertCommandSuccess(new AddModuleCommand(validModule), model,
             String.format(Messages.MESSAGE_ADD_MODULE_SUCCESS, validModule), expectedModel);

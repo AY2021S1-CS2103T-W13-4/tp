@@ -193,7 +193,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addModule(Module module) {
+    public void addModule(Module module) throws CommandException {
+        if (trackIter.reachedMaximumAllowedModuleSize()) {
+            throw new CommandException(Messages.MESSAGE_TOO_MANY_MODULES);
+        }
         trackIter.addModule(module);
     }
 

@@ -30,6 +30,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_NOT_DIGIT_SEQUENCE = "Index is not a valid digit sequence.";
     public static final String DATE_MESSAGE_CONSTRAINTS = "Date should be in the format dd/MM/yyyy";
+    public static final String MESSAGE_TOO_MANY_MODULES = "Maximum number of modules reached";
 
     public static final String MESSAGE_ADD_CONTACT_SUCCESS = "New contact added: %1$s";
     public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted Contact: %1$s";

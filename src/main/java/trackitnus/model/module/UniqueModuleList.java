@@ -28,6 +28,14 @@ public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
+    private final int maximumAllowedSize = 10;
+
+    /**
+     * Returns true if the list has reached the maximum number of allowed modules.
+     */
+    public boolean reachedMaximumAllowedSize() {
+        return internalList.size() >= maximumAllowedSize;
+    }
 
     /**
      * Returns true if the list contains an equivalent module as the given argument.

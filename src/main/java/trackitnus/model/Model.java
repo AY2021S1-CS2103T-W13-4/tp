@@ -141,7 +141,7 @@ public interface Model {
      * Adds the given module.
      * {@code module} must not already exist in the TrackIter.
      */
-    void addModule(Module module);
+    void addModule(Module module) throws CommandException;
 
     /**
      * Replaces the given module {@code target} with {@code editedModule}.
