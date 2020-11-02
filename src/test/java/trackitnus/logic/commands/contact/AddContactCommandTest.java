@@ -92,7 +92,7 @@ public class AddContactCommandTest {
     }
 
     /**
-     * A Model stub that always accept the contact being added.
+     * A Model stub that always accepts the contact being added.
      */
     private class ModelStubAcceptingContactAdded extends ModelStub {
         final ArrayList<Contact> contactsAdded = new ArrayList<>();
