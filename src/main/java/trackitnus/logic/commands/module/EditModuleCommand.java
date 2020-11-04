@@ -26,9 +26,10 @@ public final class EditModuleCommand extends Command {
         + "by the module code. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: "
-        + PREFIX_CODE + "MODULE_CODE (must be an existing code) "
+        + "MODULE_CODE "
+        + "[" + PREFIX_CODE + "NEW_MODULE_CODE] "
         + "[" + PREFIX_NAME + "NAME]\n"
-        + String.format("Example: %s %s %sCS1231S %sDiscrete Structures",
+        + String.format("Example: %s %s CS1231T %sCS1231S %sDiscrete Structures",
         Module.TYPE, COMMAND_WORD, PREFIX_CODE, PREFIX_NAME);
 
     private final Code code;
@@ -54,10 +55,10 @@ public final class EditModuleCommand extends Command {
                                              EditModuleDescriptor editModuleDescriptor) {
         assert moduleToEdit != null;
 
-        Code originalCode = moduleToEdit.getCode();
+        Code updatedCode = editModuleDescriptor.getCode().orElse(moduleToEdit.getCode());
         Name updatedName = editModuleDescriptor.getName().orElse(moduleToEdit.getName());
 
-        return new Module(originalCode, updatedName);
+        return new Module(updatedCode, updatedName);
     }
 
     @Override
@@ -114,6 +115,7 @@ public final class EditModuleCommand extends Command {
      */
     public static final class EditModuleDescriptor {
 
+        private Code code;
         private Name name;
 
         public EditModuleDescriptor() {
@@ -123,6 +125,7 @@ public final class EditModuleCommand extends Command {
          * Copy constructor.
          */
         public EditModuleDescriptor(EditModuleDescriptor toCopy) {
+            setCode(toCopy.code);
             setName(toCopy.name);
         }
 
@@ -130,7 +133,7 @@ public final class EditModuleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name);
+            return CollectionUtil.isAnyNonNull(code, name);
         }
 
         @Override
@@ -148,7 +151,15 @@ public final class EditModuleCommand extends Command {
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            return getName().equals(e.getName());
+            return getCode().equals(e.getCode()) && getName().equals(e.getName());
+        }
+
+        public Optional<Code> getCode() {
+            return Optional.ofNullable(code);
+        }
+
+        public void setCode(Code code) {
+            this.code = code;
         }
 
         public Optional<Name> getName() {
@@ -162,7 +173,8 @@ public final class EditModuleCommand extends Command {
         @Override
         public String toString() {
             return "EditModuleDescriptor{" +
-                "name=" + name +
+                "code=" + code +
+                ", name=" + name +
                 '}';
         }
     }

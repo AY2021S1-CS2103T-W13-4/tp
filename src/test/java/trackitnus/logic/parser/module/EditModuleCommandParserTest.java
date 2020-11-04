@@ -14,17 +14,18 @@ import trackitnus.model.commons.Name;
 public class EditModuleCommandParserTest {
     private final EditModuleCommandParser parser = new EditModuleCommandParser();
 
-    public static EditModuleCommand editModuleCommandBuilder(Code code, Name name) {
+    public static EditModuleCommand editModuleCommandBuilder(Code originalCode, Code newCode, Name name) {
         EditModuleCommand.EditModuleDescriptor descriptor = new EditModuleCommand.EditModuleDescriptor();
+        descriptor.setCode(newCode);
         descriptor.setName(name);
-        return new EditModuleCommand(code, descriptor);
+        return new EditModuleCommand(originalCode, descriptor);
     }
 
     // note for Module: all user input needs leading space
     @Test
     public void parse_allFieldsPresent_success() {
-        assertParseSuccess(parser, " m/CS2030S n/Sample", editModuleCommandBuilder(new Code("CS2030S"),
-            new Name("Sample")));
+        assertParseSuccess(parser, " CS2030 m/CS2030S n/Sample", editModuleCommandBuilder(new Code("CS2030"),
+            new Code("CS2030S"), new Name("Sample")));
     }
 
     @Test
@@ -35,6 +36,6 @@ public class EditModuleCommandParserTest {
 
     @Test
     public void parse_justModuleProvided_failure() {
-        assertParseFailure(parser, " m/CS1231S", MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, " CS1231S", MESSAGE_NOT_EDITED);
     }
 }

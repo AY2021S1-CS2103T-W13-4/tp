@@ -33,16 +33,20 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         Code code;
 
         try {
-            if (argMultimap.getValue(PREFIX_CODE).isEmpty()) {
+            if (argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException("No module code is provided");
             }
-            code = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
+            code = ParserUtil.parseCode(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
         EditModuleCommand.EditModuleDescriptor editModuleDescriptor = new EditModuleCommand.EditModuleDescriptor();
+        if (argMultimap.getValue(PREFIX_CODE).isPresent()) {
+            editModuleDescriptor.setCode(ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get()));
+        }
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
