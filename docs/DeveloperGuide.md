@@ -16,10 +16,13 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
     5. [Storage Component](#storage)
     6. [Common Classes](#common)
 4. [**Implementation**](#implementation)
-    1. [Module Manager](#module-manager)
-    2. [Lesson Manager](#lesson-manager)
-    3. [Task Manager](#task-manager)
-    4. [Contact Manager](#contact-manager)
+    1. [Overview](#overview)
+        1. [Code Design Considerations](#code-des-cons)
+        2. [Feature Design Considerations](#feat-des-cons)
+    2. [Module Manager](#module-manager)
+    3. [Lesson Manager](#lesson-manager)
+    4. [Task Manager](#task-manager)
+    5. [Contact Manager](#contact-manager)
     6. [Logging](#logging)
     7. [Configuration](#config)
 5. [**Documentation**](#documentation)
@@ -241,6 +244,35 @@ The `commons` package contains classes used by multiple other components in the 
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Overview** <a name="overview"></a>
+
+#### **Code Design Considerations** <a name="code-des-cons"></a>
+
+All commands in TrackIt@NUS follow a similar execution flow.
+
+![Command Activity Diagram](images/CommandActivityDiagram.png)
+
+We have done this to improve maintainability. Making our code more uniform will:
+
+* Make testing easier 
+* Allow us to track down bugs faster
+* Allow us to better use the Single Level of Abstraction (SLAP) principle in our code
+
+In addition, this will make our code base much more organised, and hence make it easier for new developers to quickly
+ learn and contribute.
+ 
+Another design challenge was how to manage our predicates. TrackIt@NUS makes use of many different predicates to
+ allow users to view specific tasks, lessons, and contacts. For exmaple, users can view module-specific tasks
+ , contacts, and lessons. They can also view overdue tasks and future tasks (tasks where the deadline is more than a
+  week away). To manage all these predicates, we had 2 options:
+
+|  | Pros | Cons |
+| ---- | ----- | ------- |
+| **Option 1 (current choice):** Extract each the predicates into their own unique class | Increases code maintainability and testability. Now as a developer you exactly where to find each predicate. Makes use of the DRY principle and improves abstraction because you no longer need to interact with the actual lambda or test function, simply call the predicate. | Makes code more verbose as each predicate can simply be declared using a single lambda. |
+| **Option2:** Declare each predicate using a single lambda in the ModelManager class. No predicate will have a class. | Makes code shorter and simpler to read. No need to create a class when you can simply declare a predicate with a lambda. | Need to duplicate such code when using ModelStubs for testing. This will violate the DRY principle. |
+
+#### **Feature Design Considerations** <a name="feat-des-cons"></a>
+
 ### **Module Manager** <a name="module-manager"></a>
 
 ### **Lesson Manager** <a name="lesson-manager"></a>
@@ -285,10 +317,6 @@ In this section, we will outline the key operations of the Task Manager, namely:
 
 We will also elaborate on one more key operation that is used in the module tabs, namely `getModuleTasks
 `, `getOverdueTasks`, `getDayUpcomingTasks`, `getFutureTasks`.
-
-Generally, this is how the Task Manager handles a command.
- 
- ![Add Task](images/AddTaskActivityDiagram.png)
  
 The add, delete, and edit commands are all implemented in similar ways. When they are executed they will:
  * call on the relevant Model methods
@@ -340,7 +368,7 @@ This is the sequence diagram of `getModuleTasks`.
 ![Get Module Tasks Sequence Diagram](images/GetModuleTasksSequenceDiagram.png)
 
 `getOverdueTasks`, `getDayUpcomingTasks`, and `getFutureTasks` are all implemented in very similar ways. In fact, the
- only difference is the predicate used.
+ only differences are the predicates used.
 
 #### Design Considerations
 
@@ -354,15 +382,7 @@ As mentioned, a task may or may not belong to a module. In the case it does not,
 The original AB3 implementation of edit commands, which would default to the original field if the edited
  field was null, would not be sufficient. Hence, we added 2 additional boolean variables - `isRemarkChanged` and
   `isCodeChanged`, to know whether users wanted to remove the existing module code or remark.
-  
-Another design challenge was how to manage our predicates. As mentioned above, `getModuleTasks`, `getOverdueTasks`, 
-`getDayUpcomingTasks`, and `getFutureTasks` all make use of different predicates. Hence, we had 2 options:
-
-|  | Pros | Cons |
-| ---- | ----- | ------- |
-| **Option 1 (current choice):** Extract each the predicates into their own unique class: <ul><li>`TaskAfterDatePredicate`</li><li>`TaskHasCodePredicate`</li><li>`TaskIsOverduePredicate`</li><li>`TaskOnDatePredicate`</li></ul> | Increases code maintainability and testability. Now as a developer you exactly where to find each predicate. Makes use of the DRY principle and improves abstraction because you no longer need to interact with the actual lambda or test function, simply call the predicate. | Makes code more verbose as each predicate can simply be declared using a single lambda. |
-| **Option2:** Declare each predicate using a single lambda in the ModelManager class. No predicate will have a class. | Makes code shorter and simpler to read. No need to create a class when you can simply declare a predicate with a lambda. | Need to duplicate such code when using ModelStubs for testing. This will violate the DRY principle. |
-
+ 
 ### **Contact Manager** <a name="contact-manager"></a>
 
 ### **Logging** <a name="logging"></a>
