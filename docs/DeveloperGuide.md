@@ -40,13 +40,28 @@ By: `Team W13-4` Since: `Aug 2020` License: `MIT`
  NUS students. It focuses on the _Command Line Interface (CLI)_ while providing users with a simple and clean
   _Graphical User Interface (GUI)_. The main iteraction with **TrackIt@NUS** will be done via commands.
 
-**TrackIt@NUS** is an all-in-one solution for busy NUS students. The information that can be managed by **TrackIt@NUS
-** includes:
+**TrackIt@NUS** is an all-in-one solution for busy NUS students. The information that can be managed by **TrackIt@NUS** includes:
 
 * Modules
 * Lessons (for each module)
-* Tasks
+* Tasks 
 * Contacts
+
+By combining these 4 core functions into a single app, we are able to deliver a unique user experience tailored to
+ university students. In addition to the standard CRUD operations, students using TrackIt@NUS will be able to:
+ 
+* View all upcoming tasks
+* View all module-specific tasks
+* View all upcoming lessons
+* View all module-specific lessons
+* View all contacts
+* View all module-specific contacts (i.e. Professors, TAs, friends in the same module)
+
+Any help on the development of TrackIt@NUS would be greatly appreciated, and there are several ways to do so:
+
+* Contribute to the codebase of TrackIt@NUS by expanding the current set of features
+* Write new test cases to improve coverage
+* Propose and implement improvements for our existing features
 
 The purpose of this Developer Guide is to help you understand the design and implementation of **TrackIt@NUS** so
  that you can get started on your contributions to the app.
@@ -72,7 +87,9 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W13-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https
+://github.com/AY2021S1-CS2103T-W13-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se
+-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -162,6 +179,8 @@ This module tab consist of three panels (`LessonListPanel`, `TaskListPanel`, `Co
   
   The `ContactTab` and `HelpTab` both follow a similar structure as the above class diagram, except that they each
    consist of 1 single panel.
+   
+#### **Contact Tab** <a name="contact-tab"></a>
 
 ### **Logic Component** <a name="logic"></a>
 
