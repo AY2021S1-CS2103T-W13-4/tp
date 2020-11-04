@@ -1,7 +1,6 @@
 package trackitnus.logic.commands.module;
 
 import static java.util.Objects.requireNonNull;
-import static trackitnus.logic.parser.CliSyntax.PREFIX_CODE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,8 @@ public final class DeleteModuleCommand extends Command {
 
     public static final String MESSAGE_USAGE = Module.TYPE + " " + COMMAND_WORD
         + ": Deletes the module identified by the module code.\n"
-        + "Parameters: " + PREFIX_CODE + "MODULE_CODE (must be an existing code)\n"
-        + String.format("Example: %s %s %sCS1231S", Module.TYPE, COMMAND_WORD, PREFIX_CODE);
+        + "Parameters: " + "MODULE_CODE (must be an existing code)\n"
+        + String.format("Example: %s %s CS1231S", Module.TYPE, COMMAND_WORD);
 
     private final Code targetCode;
 
