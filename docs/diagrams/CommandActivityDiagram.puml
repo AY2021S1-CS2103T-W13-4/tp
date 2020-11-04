@@ -8,7 +8,7 @@ start
 if () then ([valid command])
     :Parse command arguments;
     :Execute command;
-    :Save new task list to trackIter.json;
+    :Save updated modue/lesson/task/contact list to trackIter.json;
     :Show success message;
 else ([else])
     :Shows an invalid command message;
