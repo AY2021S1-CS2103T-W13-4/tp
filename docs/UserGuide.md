@@ -171,28 +171,24 @@ Create a new house for your data (Or shall I say it is to create a new category 
 Format: `M add m/MODULE_CODE n/NAME`
 
 Examples: `M add m/CS1231S n/Discrete Structures`
-
-Remark: Since the `MODULE_CODE` itself is not changable, please make sure that you have entered it correctly! In the
- rare case that you somehow mistype the code, please delete the old module and add a new one!
  
 ### Edit
 Because modules are displayed on the sidebar, it doesn't come with index. That's why to edit and delete a module, its
  code will be used! Let's see how the syntax of a module edit command:
 
-Format: `M edit m/MODULE_CODE n/NAME`
+Format: `M edit MODULE_CODE [m/NEW_MODULE_CODE] [n/NAME]`
 
-Examples: `M edit m/CS1231S n/Programming Methodology`
+Examples: `M edit CS1231S m/CS1101S n/Programming Methodology`
 
-Remark: The `MODULE_CODE` provided must be present in the Module list. After the command, the specified module will
- have a new name. The `MODULE_CODE` itself not changable!
+Remark: The `MODULE_CODE` provided must be present in the Module list.
 
 ### Delete
 And what if you realized you accidentally added in a wrong module, or have finished one? Just delete that module! The
  command's syntax is as follows: 
 
-Format: `M delete m/MODULE_CODE`
+Format: `M delete MODULE_CODE`
 
-Examples: `M delete m/CS2100`
+Examples: `M delete CS2100`
 
 :information_source: When you delete a module, the contacts associated with that module will **not** be deleted. The
  tag will also **not** be edited in any way.
@@ -452,8 +448,8 @@ TrackIt@NUS data is saved in the hard disk automatically after any command that 
 | Command | Example |
 | ---- | ------ |
 | **Add:** `M add m/MODULE_CODE n/NAME` | `M add m/CS2100 n/Computer Organisation` |
-| **Edit:** `M edit m/MODULE_CODE [n/NAME]` | `M edit n/Discrete Mathematics` |
-| **Delete:** `M delete m/MODULE_CODE` | `M delete m/CS1101S` |
+| **Edit:** `M edit MODULE_CODE [m/NEW_MODULE_CODE] [n/NAME]` | `M edit n/Discrete Mathematics` |
+| **Delete:** `M delete MODULE_CODE` | `M delete CS1101S` |
 
 ### Lesson <a name="lesson-commands"></a>
 
