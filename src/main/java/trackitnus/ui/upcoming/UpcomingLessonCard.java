@@ -41,7 +41,7 @@ public class UpcomingLessonCard extends LessonCard {
      * @param color the color to generate hexcode.
      * @return String the hexcode of the color.
      */
-    public String getColorHex(Color color) {
+    private String getColorHex(Color color) {
         java.awt.Color c = new java.awt.Color((float) color.getRed(),
             (float) color.getGreen(),
             (float) color.getBlue(),

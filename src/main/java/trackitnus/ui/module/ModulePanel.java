@@ -66,34 +66,40 @@ public class ModulePanel extends UiPart<Region> {
         moduleName.setText(module.getCode().code + " " + module.getName().value);
 
         int moduleIndex = logic.getModuleIndex(module).getZeroBased();
-        Color moduleColor = Module.COLORS.get(moduleIndex % 10);
-        moduleCircle.setFill(moduleColor);
-        taskHeader.setStyle("-fx-text-fill: " + getColorHex(moduleColor) + ";");
-        contactHeader.setStyle("-fx-text-fill: " + getColorHex(moduleColor) + ";");
+        colorRelevantElements(moduleIndex);
 
         ObservableList<Lesson> lessons = logic.getModuleLessons(module.getCode());
-        ObservableList<Task> tasks = logic.getModuleTasks(module.getCode());
-        ObservableList<Contact> contacts = logic.getModuleContacts(module.getCode());
+        lessonListPanel = new LessonListPanel(lessons);
+        setUpLessonView(lessons);
 
-        // Allow height of lists to update automatically
+        ObservableList<Task> tasks = logic.getModuleTasks(module.getCode());
+        taskListPanel = new TaskListPanel(tasks);
+        setUpTaskView(tasks);
+
+        ObservableList<Contact> contacts = logic.getModuleContacts(module.getCode());
+        contactListPanel = new ContactListPanel(contacts);
+        setUpContactsView(contacts);
+    }
+
+    private void setUpLessonView(ObservableList<Lesson> lessons) {
         lessonListPanelPlaceholder.prefHeightProperty().bind(Bindings.size(lessons)
             .multiply(lessonRowHeight).add(paddingHeight));
+        lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
+    }
+
+    private void setUpTaskView(ObservableList<Task> tasks) {
         taskListPanelPlaceholder.prefHeightProperty().bind(Bindings.size(tasks)
             .multiply(defaultRowHeight).add(paddingHeight));
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+    }
+
+    private void setUpContactsView(ObservableList<Contact> contacts) {
         contactListPanelPlaceholder.prefHeightProperty().bind(Bindings.size(contacts)
             .multiply(defaultRowHeight).add(paddingHeight));
-
-        lessonListPanel = new LessonListPanel(lessons);
-        lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
-
-        taskListPanel = new TaskListPanel(tasks);
-        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-
-        contactListPanel = new ContactListPanel(contacts);
         contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
     }
 
-    public String getColorHex(Color color) {
+    private String getColorHex(Color color) {
         java.awt.Color c = new java.awt.Color((float) color.getRed(),
             (float) color.getGreen(),
             (float) color.getBlue(),
@@ -102,4 +108,10 @@ public class ModulePanel extends UiPart<Region> {
         return hex;
     }
 
+    private void colorRelevantElements(int moduleIndex) {
+        Color moduleColor = Module.COLORS.get(moduleIndex % 10);
+        moduleCircle.setFill(moduleColor);
+        taskHeader.setStyle("-fx-text-fill: " + getColorHex(moduleColor) + ";");
+        contactHeader.setStyle("-fx-text-fill: " + getColorHex(moduleColor) + ";");
+    }
 }
