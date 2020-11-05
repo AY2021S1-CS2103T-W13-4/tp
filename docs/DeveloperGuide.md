@@ -510,3 +510,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ## **Appendix F: Instructions for Manual Testing** <a name="appen-f"></a>
 
 ## **Appendix G: Effort** <a name="appen-g"></a>
+
+The team has put in a tremendous amount of effort to this project, with a single simple principle in mind: create an app
+ that our targeted users will prefer over existing commercial apps, and do so while maintain a production-grade
+  codebase. In the following section, the effort will be further elaborated.
+  
+### App's functionality 
+
+When we first knew the app's requirement, 
+ 
