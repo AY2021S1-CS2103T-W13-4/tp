@@ -21,10 +21,10 @@ public class UpcomingPanel extends UiPart<Region> {
 
     private final Logic logic;
     private final Logger logger = LogsCenter.getLogger(UpcomingPanel.class);
-    private final ObservableList<Object> calendarDates = FXCollections.observableArrayList();
+    private final ObservableList<UpcomingSection> calendarDates = FXCollections.observableArrayList();
     private final LocalDate today = LocalDate.now();
     @FXML
-    private ListView<Object> calendarView;
+    private ListView<UpcomingSection> calendarView;
 
     /**
      * Constructor for Upcoming Panel
@@ -35,50 +35,50 @@ public class UpcomingPanel extends UiPart<Region> {
 
         getDatesForTheWeek(today);
         calendarView.setItems(calendarDates);
-        calendarView.setCellFactory(listView -> new DateListViewCell());
+        calendarView.setCellFactory(listView -> new SectionListViewCell());
 
     }
 
     private void getDatesForTheWeek(LocalDate today) {
         List<LocalDate> list = today.datesUntil(today.plusDays(7)).collect(Collectors.toList());
 
-        calendarDates.add(new CalendarSection("Overdue"));
+        calendarDates.add(new UpcomingSection("Overdue"));
 
         for (LocalDate date : list) {
-            calendarDates.add(new Day(date));
+            calendarDates.add(new UpcomingSection(date));
         }
 
-        calendarDates.add(new CalendarSection("Future"));
+        calendarDates.add(new UpcomingSection("Future"));
     }
 
-    class DateListViewCell extends ListCell<Object> {
+    class SectionListViewCell extends ListCell<UpcomingSection> {
         @Override
-        protected void updateItem(Object object, boolean empty) {
-            super.updateItem(object, empty);
+        protected void updateItem(UpcomingSection section, boolean empty) {
+            super.updateItem(section, empty);
 
-            if (empty || object == null) {
+            if (empty || section == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (object instanceof Day) {
-                    Day day = (Day) object;
-                    setGraphic(new DayCard(day, logic.getDayUpcomingTasks(day.getDate()),
-                        logic.getDayUpcomingLessons(day.getDate()), logic).getRoot());
+                if (section.isDay()) {
+                    LocalDate date = section.getDate();
+                    setGraphic(new UpcomingSectionDayCard(section, logic.getDayUpcomingTasks(date),
+                        logic.getDayUpcomingLessons(date), logic).getRoot());
                 } else {
-                    assert (object instanceof CalendarSection);
-                    CalendarSection calendarSection = (CalendarSection) object;
-                    allocateCalendarSections(calendarSection);
+                    assert (section.getTitle() != null);
+                    allocateCalendarSections(section);
                 }
             }
         }
 
-        public void allocateCalendarSections(CalendarSection c) {
-            if (c.getTitle().equals("Overdue")) {
-                setGraphic(new CalendarSectionCard(c, logic.getOverdueTasks(), logic).getRoot());
+        public void allocateCalendarSections(UpcomingSection section) {
+            if (section.getTitle().equals("Overdue")) {
+                setGraphic(new UpcomingSectionCard(section, logic.getOverdueTasks(), logic).getRoot());
             } else {
-                assert (c.getTitle().equals("Future"));
-                setGraphic(new CalendarSectionCard(c, logic.getFutureTasks(), logic).getRoot());
+                assert (section.getTitle().equals("Future"));
+                setGraphic(new UpcomingSectionCard(section, logic.getFutureTasks(), logic).getRoot());
             }
         }
     }
+
 }
