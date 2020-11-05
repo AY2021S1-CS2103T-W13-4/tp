@@ -34,6 +34,8 @@ public class LessonCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label address;
+    @FXML
+    private Label code;
 
     /**
      * Creates a {@code ContactCode} with the given {@code Lesson} and index to display.
@@ -45,6 +47,7 @@ public class LessonCard extends UiPart<Region> {
         type.setText(lesson.getType().name());
         date.setText(lesson.getTime().toString());
         address.setText(lesson.getAddress().toString());
+        code.setText("");
     }
 
     @Override

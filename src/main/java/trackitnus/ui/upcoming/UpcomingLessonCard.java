@@ -2,18 +2,14 @@ package trackitnus.ui.upcoming;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import trackitnus.model.lesson.Lesson;
-import trackitnus.ui.UiPart;
+import trackitnus.ui.lesson.LessonCard;
 
 /**
- * An UI component that displays information of a {@code Lesson}.
+ * An UI component that displays information of a {@code Lesson} in the Upcoming Tab.
  */
-public class UpcomingLessonCard extends UiPart<Region> {
-
-    private static final String FXML = "Upcoming/UpcomingLessonListCard.fxml";
+public class UpcomingLessonCard extends LessonCard {
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -23,33 +19,20 @@ public class UpcomingLessonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TrackIter level 4</a>
      */
 
-    public final Lesson lesson;
-
-    @FXML
-    private HBox cardPane;
-    @FXML
-    private Label id;
     @FXML
     private Label code;
     @FXML
-    private Label type;
-    @FXML
     private Label date;
-    @FXML
-    private Label address;
+
 
     /**
-     * Creates a {@code ContactCode} with the given {@code Lesson} and index to display.
+     * Creates a {@code UpcomingLessonCard} with the given {@code Lesson} and index to display.
      */
     public UpcomingLessonCard(Lesson lesson, int displayedIndex, Color lessonColor) {
-        super(FXML);
-        this.lesson = lesson;
-        id.setText("[" + displayedIndex + "] ");
+        super(lesson, displayedIndex);
         code.setText(lesson.getCode().code);
-        type.setText(lesson.getType().name());
         date.setText(lesson.getTime().toString().substring(4));
         date.setStyle("-fx-text-fill: " + getColorHex(lessonColor) + ";");
-        address.setText(lesson.getAddress().toString());
     }
 
     /**
@@ -65,24 +48,6 @@ public class UpcomingLessonCard extends UiPart<Region> {
             (float) color.getOpacity());
         String hex = String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
         return hex;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof UpcomingLessonCard)) {
-            return false;
-        }
-
-        // state check
-        UpcomingLessonCard card = (UpcomingLessonCard) other;
-        return id.getText().equals(card.id.getText())
-            && lesson.equals(card.lesson);
     }
 }
 

@@ -24,6 +24,7 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="date" styleClass="cell_big_label" text="\$date"/>
+                <Label fx:id="code" styleClass="cell_big_label" text="$code"/>
                 <Label fx:id="type" styleClass="cell_big_label" text="\$type"/>
                 <Label fx:id="address" styleClass="cell_big_label" text="$address"/>
             </HBox>
