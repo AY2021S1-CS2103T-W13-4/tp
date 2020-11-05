@@ -1,16 +1,8 @@
 package trackitnus.testutil.builder;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Test;
-
-import trackitnus.logic.commands.contact.EditContactCommand;
 import trackitnus.logic.commands.task.EditTaskCommand;
-import trackitnus.logic.parser.ParserUtil;
-import trackitnus.model.commons.Code;
-import trackitnus.model.commons.Name;
-import trackitnus.model.contact.Contact;
 import trackitnus.model.task.Task;
 import trackitnus.testutil.TestUtil;
 

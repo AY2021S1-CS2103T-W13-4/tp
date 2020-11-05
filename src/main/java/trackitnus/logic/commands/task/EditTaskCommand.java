@@ -227,6 +227,7 @@ public final class EditTaskCommand extends Command {
 
             return getName().equals(e.getName())
                 && getDate().equals(e.getDate())
+                && getCode().equals(e.getCode())
                 && getRemark().equals(e.getRemark());
         }
 

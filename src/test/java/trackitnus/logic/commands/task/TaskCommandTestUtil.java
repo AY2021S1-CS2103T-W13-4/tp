@@ -3,17 +3,12 @@ package trackitnus.logic.commands.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import trackitnus.commons.core.index.Index;
-import trackitnus.logic.commands.contact.EditContactCommand;
 import trackitnus.model.Model;
-import trackitnus.model.commons.Code;
-import trackitnus.model.commons.Name;
 import trackitnus.model.task.Task;
-import trackitnus.testutil.builder.EditContactDescriptorBuilder;
 import trackitnus.testutil.builder.EditTaskDescriptorBuilder;
 
 public class TaskCommandTestUtil {

@@ -1,24 +1,18 @@
 package trackitnus.logic.commands.task;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackitnus.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackitnus.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackitnus.testutil.typical.TypicalTrackIter.getTypicalTrackIter;
 
-import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
 
 import trackitnus.commons.core.Messages;
 import trackitnus.commons.core.index.Index;
-import trackitnus.logic.commands.contact.ContactCommandTestUtil;
-import trackitnus.logic.commands.contact.DeleteContactCommand;
 import trackitnus.model.Model;
 import trackitnus.model.ModelManager;
 import trackitnus.model.UserPrefs;
-import trackitnus.model.contact.Contact;
 import trackitnus.model.task.Task;
 import trackitnus.testutil.typical.TypicalIndexes;
 

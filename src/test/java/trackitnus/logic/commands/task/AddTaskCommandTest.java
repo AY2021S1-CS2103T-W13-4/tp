@@ -10,17 +10,13 @@ import org.junit.jupiter.api.Test;
 
 import trackitnus.commons.core.Messages;
 import trackitnus.logic.commands.CommandResult;
-import trackitnus.logic.commands.contact.AddContactCommand;
-import trackitnus.logic.commands.contact.AddContactCommandTest;
 import trackitnus.logic.commands.exceptions.CommandException;
 import trackitnus.model.ReadOnlyTrackIter;
 import trackitnus.model.TrackIter;
 import trackitnus.model.commons.Code;
-import trackitnus.model.contact.Contact;
 import trackitnus.model.task.Task;
 import trackitnus.testutil.Assert;
 import trackitnus.testutil.ModelStub;
-import trackitnus.testutil.builder.ContactBuilder;
 import trackitnus.testutil.builder.TaskBuilder;
 
 public class AddTaskCommandTest {

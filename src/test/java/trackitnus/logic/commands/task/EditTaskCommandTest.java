@@ -12,16 +12,11 @@ import org.junit.jupiter.api.Test;
 
 import trackitnus.commons.core.Messages;
 import trackitnus.commons.core.index.Index;
-import trackitnus.logic.commands.contact.ContactCommandTestUtil;
-import trackitnus.logic.commands.contact.EditContactCommand;
 import trackitnus.model.Model;
 import trackitnus.model.ModelManager;
 import trackitnus.model.TrackIter;
 import trackitnus.model.UserPrefs;
-import trackitnus.model.contact.Contact;
 import trackitnus.model.task.Task;
-import trackitnus.testutil.builder.ContactBuilder;
-import trackitnus.testutil.builder.EditContactDescriptorBuilder;
 import trackitnus.testutil.builder.EditTaskDescriptorBuilder;
 import trackitnus.testutil.builder.TaskBuilder;
 import trackitnus.testutil.typical.TypicalIndexes;
