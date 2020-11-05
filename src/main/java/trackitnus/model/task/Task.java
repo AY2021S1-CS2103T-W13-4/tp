@@ -52,6 +52,10 @@ public class Task {
         return Optional.ofNullable(code);
     }
 
+    public Task setCode(Code newCode) {
+        return new Task(name, date, newCode, remark);
+    }
+
     public Name getName() {
         return name;
     }

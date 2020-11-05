@@ -81,6 +81,10 @@ public class Lesson {
         return code;
     }
 
+    public Lesson setCode(Code newCode) {
+        return new Lesson(newCode, type, time, address);
+    }
+
     public Type getType() {
         return type;
     }

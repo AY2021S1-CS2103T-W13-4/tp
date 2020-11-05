@@ -5,6 +5,8 @@ import static trackitnus.commons.core.Messages.MESSAGE_DUPLICATE_MODULE;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_CODE;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import trackitnus.commons.core.Messages;
@@ -15,7 +17,11 @@ import trackitnus.logic.commands.exceptions.CommandException;
 import trackitnus.model.Model;
 import trackitnus.model.commons.Code;
 import trackitnus.model.commons.Name;
+import trackitnus.model.contact.Contact;
+import trackitnus.model.lesson.Lesson;
 import trackitnus.model.module.Module;
+import trackitnus.model.tag.Tag;
+import trackitnus.model.task.Task;
 
 public final class EditModuleCommand extends Command {
     public static final String COMMAND_WORD = "edit";
@@ -79,6 +85,30 @@ public final class EditModuleCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
+        if (!moduleToEdit.get().isSameModule(editedModule)) {
+            Code updatedCode = editModuleDescriptor.getCode().get();
+            // edit all the related tasks
+            List<Task> tasksToEdit = new ArrayList<>(model.getModuleTasks(code));
+            for (Task task : tasksToEdit) {
+                Task updatedTask = task.setCode(updatedCode);
+                model.setTask(task, updatedTask);
+            }
+
+            // edit all the related lessons
+            List<Lesson> lessonsToEdit = new ArrayList<>(model.getModuleLessons(code));
+            for (Lesson lesson : lessonsToEdit) {
+                Lesson updatedLesson = lesson.setCode(updatedCode);
+                model.setLesson(lesson, updatedLesson);
+            }
+
+            List<Contact> contactsToEdit = new ArrayList<>(model.getModuleContacts(code));
+            for (Contact contact : contactsToEdit) {
+                Contact updatedContact = contact.setTag(new Tag(code.toString()), new Tag(updatedCode.toString()));
+                model.setContact(contact, updatedContact);
+            }
+        }
+
+        // edit the module
         model.setModule(moduleToEdit.get(), editedModule);
         return new CommandResult(String.format(Messages.MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }

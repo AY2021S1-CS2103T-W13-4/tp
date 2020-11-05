@@ -57,6 +57,22 @@ public class Contact {
     }
 
     /**
+     * Returns a Contact with {@code oldTag} replaced by {@code newTag}
+     */
+    public Contact setTag(Tag oldTag, Tag newTag) {
+        Set<Tag> oldTags = getTags();
+        Set<Tag> newTags = new HashSet<>();
+        for (Tag tag: oldTags) {
+            if (tag.equals(oldTag)) {
+                newTags.add(newTag);
+            } else {
+                newTags.add(tag);
+            }
+        }
+        return new Contact(name, phone, email, newTags);
+    }
+
+    /**
      * Returns true if both contacts of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two contacts.
      */
