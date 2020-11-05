@@ -14,12 +14,15 @@ public class OverdueFutureTaskCard extends TaskCard {
 
     @FXML
     private Label date;
+    @FXML
+    private Label code;
 
     /**
      * Creates a {@code OverdueFutureTaskCard} with the given {@code Task} and index to display.
      */
     public OverdueFutureTaskCard(Task task, int displayedIndex) {
         super(task, displayedIndex);
+        code.setText(task.getCode().isPresent() ? task.getCode().get().code + " " : "");
 
         if (task.getDate().isAfter(today.plusDays(7))) {
             date.setStyle("-fx-text-fill: #68C2E8");
