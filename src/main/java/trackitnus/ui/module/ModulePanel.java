@@ -104,8 +104,7 @@ public class ModulePanel extends UiPart<Region> {
             (float) color.getGreen(),
             (float) color.getBlue(),
             (float) color.getOpacity());
-        String hex = String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
-        return hex;
+        return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
     }
 
     private void colorRelevantElements(int moduleIndex) {

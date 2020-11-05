@@ -41,19 +41,14 @@ public class HelpPanel extends UiPart<Region> {
 
         helpCardTableView.setItems(helpCommands());
         helpCardTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        helpCardTableView.setColumnResizePolicy(new Callback<TableView.ResizeFeatures, Boolean>() {
-            @Override
-            public Boolean call(TableView.ResizeFeatures p) {
-                return true;
-            }
-        });
+        helpCardTableView.setColumnResizePolicy((Callback<TableView.ResizeFeatures, Boolean>) p -> true);
         TableColumn<HelpCard, String> actionCol = new TableColumn<>("Action");
         actionCol.setSortable(false);
-        actionCol.setCellValueFactory(new PropertyValueFactory<HelpCard, String>("Action"));
+        actionCol.setCellValueFactory(new PropertyValueFactory<>("Action"));
 
         TableColumn<HelpCard, String> commandCol = new TableColumn<>("Command");
         commandCol.setSortable(false);
-        commandCol.setCellValueFactory(new PropertyValueFactory<HelpCard, String>("Command"));
+        commandCol.setCellValueFactory(new PropertyValueFactory<>("Command"));
 
         helpCardTableView.getColumns().addAll(actionCol, commandCol);
     }
