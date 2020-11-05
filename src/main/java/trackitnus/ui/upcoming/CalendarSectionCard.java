@@ -11,7 +11,7 @@ import trackitnus.logic.Logic;
 import trackitnus.logic.commands.exceptions.CommandException;
 import trackitnus.model.task.Task;
 import trackitnus.ui.UiPart;
-import trackitnus.ui.task.OverdueTaskCard;
+import trackitnus.ui.task.OverdueFutureTaskCard;
 
 public class CalendarSectionCard extends UiPart<Region> {
     private static final String FXML = "Upcoming/CalendarSectionCard.fxml";
@@ -68,7 +68,7 @@ public class CalendarSectionCard extends UiPart<Region> {
                 setText(null);
             } else {
                 try {
-                    setGraphic(new OverdueTaskCard(task, logic.getTaskIndex(task).getOneBased()).getRoot());
+                    setGraphic(new OverdueFutureTaskCard(task, logic.getTaskIndex(task).getOneBased()).getRoot());
                 } catch (CommandException e) {
                     e.printStackTrace();
                 }
