@@ -78,6 +78,10 @@ public final class EditTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
+        if (!editTaskDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(Messages.MESSAGE_NOT_EDITED);
+        }
+
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 

@@ -1,5 +1,6 @@
 package trackitnus.logic.parser.task;
 
+import static trackitnus.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static trackitnus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static trackitnus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static trackitnus.testutil.typical.TypicalIndexes.INDEX_FIRST;
@@ -53,4 +54,8 @@ public class EditTaskCommandParserTest {
             EditTaskCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_justIndexProvided_failure() {
+        assertParseFailure(parser, " 1", MESSAGE_NOT_EDITED);
+    }
 }

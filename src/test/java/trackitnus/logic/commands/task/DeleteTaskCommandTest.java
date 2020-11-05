@@ -53,7 +53,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showTaskAtIndex(model, TypicalIndexes.INDEX_FIRST);
+        TaskCommandTestUtil.showTaskAtIndex(model, TypicalIndexes.INDEX_FIRST);
 
         Task taskToDelete = model.getFilteredTaskList().get(TypicalIndexes.INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(TypicalIndexes.INDEX_FIRST);
@@ -69,7 +69,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showTaskAtIndex(model, TypicalIndexes.INDEX_FIRST);
+        TaskCommandTestUtil.showTaskAtIndex(model, TypicalIndexes.INDEX_FIRST);
 
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -100,20 +100,6 @@ public class DeleteTaskCommandTest {
 
         // different contact -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showTaskAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
-
-        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
-        Predicate<Task> p = t -> t.equals(task);
-        model.updateFilteredTaskList(p);
-
-        assertEquals(1, model.getFilteredTaskList().size());
     }
 
     /**

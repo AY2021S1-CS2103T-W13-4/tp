@@ -137,13 +137,13 @@ public class EditContactCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of trackiter
      */
     @Test
     public void execute_invalidContactIndexFilteredList_failure() {
         ContactCommandTestUtil.showContactAtIndex(model, TypicalIndexes.INDEX_FIRST);
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of trackiter list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackIter().getContactList().size());
 
         EditContactCommand editContactCommand = new EditContactCommand(outOfBoundIndex,
