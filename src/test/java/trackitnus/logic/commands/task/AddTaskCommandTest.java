@@ -60,7 +60,7 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public boolean hasTask (Task task) {
+        public boolean hasTask(Task task) {
             requireNonNull(task);
             return this.task.isSameTask(task);
         }

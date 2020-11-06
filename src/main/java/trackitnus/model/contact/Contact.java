@@ -62,7 +62,7 @@ public class Contact {
     public Contact setTag(Tag oldTag, Tag newTag) {
         Set<Tag> oldTags = getTags();
         Set<Tag> newTags = new HashSet<>();
-        for (Tag tag: oldTags) {
+        for (Tag tag : oldTags) {
             if (tag.equals(oldTag)) {
                 newTags.add(newTag);
             } else {

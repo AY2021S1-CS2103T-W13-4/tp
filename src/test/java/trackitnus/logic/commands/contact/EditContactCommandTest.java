@@ -71,11 +71,11 @@ public class EditContactCommandTest {
         ContactCommandTestUtil.showContactAtIndex(model, TypicalIndexes.INDEX_FIRST);
 
         Contact contactInFilteredList =
-                model.getFilteredContactList().get(TypicalIndexes.INDEX_FIRST.getZeroBased());
+            model.getFilteredContactList().get(TypicalIndexes.INDEX_FIRST.getZeroBased());
         Contact editedContact =
-                new ContactBuilder(contactInFilteredList).withPhone("98989898").build();
+            new ContactBuilder(contactInFilteredList).withPhone("98989898").build();
         EditContactCommand editContactCommand = new EditContactCommand(TypicalIndexes.INDEX_FIRST,
-                new EditContactDescriptorBuilder().withPhone("98989898").build());
+            new EditContactDescriptorBuilder().withPhone("98989898").build());
 
         Model expectedModel = new ModelManager(new TrackIter(model.getTrackIter()), new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);

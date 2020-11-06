@@ -14,10 +14,9 @@ import trackitnus.ui.UiPart;
 
 public class ContactPanel extends UiPart<Region> {
     private static final String FXML = "Contact/ContactPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ContactPanel.class);
     private static final int DEFAULT_ROW_HEIGHT = 50;
     private static final int PADDING_HEIGHT = 10;
-
+    private final Logger logger = LogsCenter.getLogger(ContactPanel.class);
     @FXML
     private StackPane contactListPanelPlaceholder;
 

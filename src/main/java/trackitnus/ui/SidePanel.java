@@ -24,10 +24,10 @@ import trackitnus.ui.upcoming.UpcomingPanel;
 
 public class SidePanel extends UiPart<Region> {
     private static final String FXML = "SidePanel.fxml";
+    private static final int MODULE_ROW_HEIGHT = 32;
     private final Logger logger = LogsCenter.getLogger(SidePanel.class);
     private final Consumer<ArrayList<Object>> tabConsumer;
     private final Logic logic;
-    private static final int MODULE_ROW_HEIGHT = 32;
     private Button selectedTabButton;
 
     @FXML

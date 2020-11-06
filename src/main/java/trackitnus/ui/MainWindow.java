@@ -230,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.getIsDeleteModule().equals(tabInContext)) {
+            if (commandResult.getNameOfEditedModule().equals(tabInContext)) {
                 switchTab(new ArrayList<>(Arrays.asList((Object) "U")));
             }
 

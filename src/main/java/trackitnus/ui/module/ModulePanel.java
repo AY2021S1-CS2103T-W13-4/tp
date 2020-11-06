@@ -28,12 +28,12 @@ import trackitnus.ui.task.TaskListPanel;
  * Panel containing the list of modules.
  */
 public class ModulePanel extends UiPart<Region> {
-    private static final String FXML = "Module/ModulePanel.fxml";
     public static final int MAX_WIDTH = 500;
-    private final Logger logger = LogsCenter.getLogger(ModulePanel.class);
+    private static final String FXML = "Module/ModulePanel.fxml";
     private static final int DEFAULT_ROW_HEIGHT = 50;
     private static final int LESSON_ROW_HEIGHT = 40;
     private static final int PADDING_HEIGHT = 10;
+    private final Logger logger = LogsCenter.getLogger(ModulePanel.class);
     private final LessonListPanel lessonListPanel;
     private final TaskListPanel taskListPanel;
     private final ContactListPanel contactListPanel;

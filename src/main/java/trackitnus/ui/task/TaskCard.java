@@ -14,10 +14,8 @@ import trackitnus.ui.UiPart;
  */
 public class TaskCard extends UiPart<Region> {
     private static final String FXML = "Task/TaskListCard.fxml";
-
-    public final Task task;
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MMM EEEE");
-
+    public final Task task;
     @FXML
     private HBox cardPane;
     @FXML

@@ -7,6 +7,7 @@ import trackitnus.commons.util.StringUtil;
 
 public class NameContainsKeywordsPredicate implements Predicate<Task> {
     private final List<String> keywords;
+
     // TODO: Delete this class
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
