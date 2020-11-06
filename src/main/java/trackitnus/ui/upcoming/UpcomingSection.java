@@ -10,7 +10,7 @@ import java.util.Objects;
 public class UpcomingSection {
     private final String title;
     private final LocalDate date;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM EEEE");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MMM EEEE");
 
     /**
      * Constructor for UpcomingSection, namely for Overdue and Future sections
@@ -27,7 +27,7 @@ public class UpcomingSection {
      */
     public UpcomingSection(LocalDate date) {
         this.date = date;
-        this.title = date.format(formatter);
+        this.title = date.format(DATE_TIME_FORMATTER);
     }
 
     /**

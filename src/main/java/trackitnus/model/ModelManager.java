@@ -25,7 +25,6 @@ import trackitnus.model.lesson.DayOfWeek;
 import trackitnus.model.lesson.Lesson;
 import trackitnus.model.lesson.LessonHasCodePredicate;
 import trackitnus.model.lesson.LessonOnWeekdayPredicate;
-import trackitnus.model.lesson.Type;
 import trackitnus.model.module.Module;
 import trackitnus.model.tag.Tag;
 import trackitnus.model.task.Task;
@@ -112,7 +111,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setTrackIter(ReadOnlyTrackIter trackIt) {
-        this.trackIter.resetData(trackIt);
+        trackIter.resetData(trackIt);
     }
 
     //=========== Contact ================================================================================
@@ -284,8 +283,7 @@ public class ModelManager implements Model {
         trackIter.setLesson(target, editedLesson);
     }
 
-    @Override
-    public void sortLesson() {
+    private void sortLesson() {
         trackIter.sortLesson();
     }
 
@@ -373,17 +371,6 @@ public class ModelManager implements Model {
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
         requireNonNull(predicate);
         filteredLessons.setPredicate(predicate);
-    }
-
-    @Override
-    public Optional<Lesson> getLesson(Code code, Type type) {
-        List<Lesson> allLessons = trackIter.getLessonList();
-        for (Lesson lesson : allLessons) {
-            if (lesson.getCode().equals(code) && lesson.getType().equals(type)) {
-                return Optional.of(lesson);
-            }
-        }
-        return Optional.empty();
     }
 
     @Override

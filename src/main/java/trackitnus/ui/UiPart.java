@@ -25,7 +25,7 @@ public abstract class UiPart<T> {
      * Constructs a UiPart with the specified FXML file URL.
      * The FXML file must not specify the {@code fx:controller} attribute.
      */
-    public UiPart(URL fxmlFileUrl) {
+    protected UiPart(URL fxmlFileUrl) {
         loadFxmlFile(fxmlFileUrl, null);
     }
 
@@ -34,7 +34,7 @@ public abstract class UiPart<T> {
      *
      * @see #UiPart(URL)
      */
-    public UiPart(String fxmlFileName) {
+    protected UiPart(String fxmlFileName) {
         this(getFxmlFileUrl(fxmlFileName));
     }
 
@@ -42,7 +42,7 @@ public abstract class UiPart<T> {
      * Constructs a UiPart with the specified FXML file URL and root object.
      * The FXML file must not specify the {@code fx:controller} attribute.
      */
-    public UiPart(URL fxmlFileUrl, T root) {
+    protected UiPart(URL fxmlFileUrl, T root) {
         loadFxmlFile(fxmlFileUrl, root);
     }
 
@@ -51,7 +51,7 @@ public abstract class UiPart<T> {
      *
      * @see #UiPart(URL, T)
      */
-    public UiPart(String fxmlFileName, T root) {
+    protected UiPart(String fxmlFileName, T root) {
         this(getFxmlFileUrl(fxmlFileName), root);
     }
 

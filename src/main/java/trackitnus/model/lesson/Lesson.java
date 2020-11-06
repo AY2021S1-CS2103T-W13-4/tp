@@ -35,6 +35,7 @@ public class Lesson {
      * @param code
      * @param type
      * @param time
+     * @param address
      */
     public Lesson(Code code, Type type, LessonDateTime time, Address address) {
         CollectionUtil.requireAllNonNull(code, type, time, address);
@@ -81,7 +82,12 @@ public class Lesson {
         return code;
     }
 
-    public Lesson setCode(Code newCode) {
+    /**
+     * @param newCode the new code to set
+     * @return a new lesson with the code that has just been passed in
+     */
+    public Lesson modifyCode(Code newCode) {
+        CollectionUtil.requireAllNonNull(newCode);
         return new Lesson(newCode, type, time, address);
     }
 
@@ -118,6 +124,7 @@ public class Lesson {
      * This methods is here for to act as a compatibility layer for UniqueModuleList
      */
     public boolean isSameLesson(Lesson lesson) {
-        return this.equals(lesson);
+        return equals(lesson);
     }
+
 }

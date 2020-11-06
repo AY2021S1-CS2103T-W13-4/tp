@@ -16,7 +16,7 @@ public class TaskCard extends UiPart<Region> {
     private static final String FXML = "Task/TaskListCard.fxml";
 
     public final Task task;
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM EEEE");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MMM EEEE");
 
     @FXML
     private HBox cardPane;
@@ -41,7 +41,7 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().toString());
         remark.setText(task.getRemark());
         code.setText("");
-        date.setText(" - " + task.getDate().format(formatter));
+        date.setText(" - " + task.getDate().format(DATE_TIME_FORMATTER));
     }
 
     @Override

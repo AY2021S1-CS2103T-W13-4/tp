@@ -11,8 +11,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_TYPE = "The type provided is invalid";
     public static final String MESSAGE_INVALID_TAB_VALUE = "Invalid tab values.";
 
-    public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
-
     public static final String MESSAGE_LESSON_DOES_NOT_EXIST = "There is no such lesson";
     public static final String MESSAGE_MODULE_DOES_NOT_EXIST = "The module specified in the command doesn't exist.";
     public static final String MESSAGE_TASK_DOES_NOT_EXIST = "There is no such task";

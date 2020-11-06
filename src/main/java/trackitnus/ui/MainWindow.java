@@ -40,14 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
     private String tabInContext = "";
 
-    // Independent Ui parts residing in this Ui container
-    private ModulePanel modulePanel;
-    private ContactPanel contactPanel;
-    private SidePanel sidePanel;
-
     private ResultDisplay resultDisplay;
-    private UpcomingPanel upcomingPanel;
-    private HelpPanel helpPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -136,9 +129,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() throws CommandException {
 
-        upcomingPanel = new UpcomingPanel(logic);
+        UpcomingPanel upcomingPanel = new UpcomingPanel(logic);
 
-        sidePanel = new SidePanel(tabValues -> {
+        SidePanel sidePanel = new SidePanel(tabValues -> {
             try {
                 switchTab(tabValues);
             } catch (CommandException e) {
@@ -178,15 +171,16 @@ public class MainWindow extends UiPart<Stage> {
             Module tabModule = (Module) tabValues.get(1);
             tabInContext = tabModule.getCode().toString();
             logger.info("Module: " + tabModule);
-            modulePanel = new ModulePanel(tabModule, logic);
+            // Independent Ui parts residing in this Ui container
+            ModulePanel modulePanel = new ModulePanel(tabModule, logic);
             tabPanelPlaceholder.getChildren().add(modulePanel.getRoot());
             break;
         case Contact.TYPE:
-            contactPanel = new ContactPanel(logic.getAllContacts());
+            ContactPanel contactPanel = new ContactPanel(logic.getAllContacts());
             tabPanelPlaceholder.getChildren().add(contactPanel.getRoot());
             break;
         case HelpPanel.TYPE:
-            helpPanel = new HelpPanel();
+            HelpPanel helpPanel = new HelpPanel();
             tabPanelPlaceholder.getChildren().add(helpPanel.getRoot());
             break;
         default:

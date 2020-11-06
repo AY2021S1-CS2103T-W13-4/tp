@@ -70,23 +70,21 @@ public final class EditModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Optional<Module> moduleToEdit = model.getModule(code);
-        if (moduleToEdit.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_MODULE_DOES_NOT_EXIST);
-        }
+        Module moduleToEdit =
+            model.getModule(code).orElseThrow(() -> new CommandException(Messages.MESSAGE_MODULE_DOES_NOT_EXIST));
 
-        Module editedModule = createEditedModule(moduleToEdit.get(), editModuleDescriptor);
+        Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
 
-        if (moduleToEdit.get().equals(editedModule)) {
+        if (moduleToEdit.equals(editedModule)) {
             throw new CommandException(Messages.MESSAGE_MODULE_UNCHANGED);
         }
 
-        if (!moduleToEdit.get().isSameModule(editedModule) && model.hasModule(editedModule)) {
+        if (!moduleToEdit.hasSameCode(editedModule) && model.hasModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        if (!moduleToEdit.get().isSameModule(editedModule)) {
-            Code updatedCode = editModuleDescriptor.getCode().get();
+        if (!moduleToEdit.hasSameCode(editedModule)) {
+            Code updatedCode = editModuleDescriptor.getCode().orElseThrow(RuntimeException::new);
             // edit all the related tasks
             List<Task> tasksToEdit = new ArrayList<>(model.getModuleTasks(code));
             for (Task task : tasksToEdit) {
@@ -97,7 +95,7 @@ public final class EditModuleCommand extends Command {
             // edit all the related lessons
             List<Lesson> lessonsToEdit = new ArrayList<>(model.getModuleLessons(code));
             for (Lesson lesson : lessonsToEdit) {
-                Lesson updatedLesson = lesson.setCode(updatedCode);
+                Lesson updatedLesson = lesson.modifyCode(updatedCode);
                 model.setLesson(lesson, updatedLesson);
             }
 
@@ -109,7 +107,7 @@ public final class EditModuleCommand extends Command {
         }
 
         // edit the module
-        model.setModule(moduleToEdit.get(), editedModule);
+        model.setModule(moduleToEdit, editedModule);
         return new CommandResult(String.format(Messages.MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 

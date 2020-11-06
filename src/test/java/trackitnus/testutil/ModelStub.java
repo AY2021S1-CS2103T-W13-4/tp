@@ -15,7 +15,6 @@ import trackitnus.model.ReadOnlyUserPrefs;
 import trackitnus.model.commons.Code;
 import trackitnus.model.contact.Contact;
 import trackitnus.model.lesson.Lesson;
-import trackitnus.model.lesson.Type;
 import trackitnus.model.module.Module;
 import trackitnus.model.task.Task;
 
@@ -229,16 +228,6 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Optional<Lesson> getLesson(Code code, Type type) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void sortLesson() {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -27,7 +27,7 @@ public class SidePanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(SidePanel.class);
     private final Consumer<ArrayList<Object>> tabConsumer;
     private final Logic logic;
-    private final int moduleRowHeight = 32;
+    private static final int MODULE_ROW_HEIGHT = 32;
     private Button selectedTabButton;
 
     @FXML
@@ -52,7 +52,7 @@ public class SidePanel extends UiPart<Region> {
         super(FXML);
         this.tabConsumer = tabConsumer;
         this.logic = logic;
-        this.initialize();
+        initialize();
     }
 
     /**
@@ -62,7 +62,7 @@ public class SidePanel extends UiPart<Region> {
         if (logic != null) {
             // Get modules tab buttons.
             ObservableList<Module> modules = logic.getFilteredModuleList();
-            moduleListView.setPrefHeight(modules.size() * moduleRowHeight);
+            moduleListView.setPrefHeight(modules.size() * MODULE_ROW_HEIGHT);
             moduleListView.setItems(modules);
             moduleListView.setCellFactory(listView -> new ModuleListViewCell());
 

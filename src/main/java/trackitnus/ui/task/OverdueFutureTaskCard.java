@@ -10,7 +10,6 @@ import trackitnus.model.task.Task;
  * An UI component that displays information of an {@code overdue or future task}.
  */
 public class OverdueFutureTaskCard extends TaskCard {
-    private final LocalDate today = LocalDate.now();
 
     @FXML
     private Label date;
@@ -24,6 +23,7 @@ public class OverdueFutureTaskCard extends TaskCard {
         super(task, displayedIndex);
         code.setText(task.getCode().isPresent() ? task.getCode().get().code + " " : "");
 
+        LocalDate today = LocalDate.now();
         if (task.getDate().isAfter(today.plusDays(7))) {
             date.setStyle("-fx-text-fill: #68C2E8");
         } else {

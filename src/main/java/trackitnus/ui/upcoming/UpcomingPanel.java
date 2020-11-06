@@ -22,7 +22,6 @@ public class UpcomingPanel extends UiPart<Region> {
     private final Logic logic;
     private final Logger logger = LogsCenter.getLogger(UpcomingPanel.class);
     private final ObservableList<UpcomingSection> calendarDates = FXCollections.observableArrayList();
-    private final LocalDate today = LocalDate.now();
     @FXML
     private ListView<UpcomingSection> calendarView;
 
@@ -33,6 +32,7 @@ public class UpcomingPanel extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
 
+        LocalDate today = LocalDate.now();
         getDatesForTheWeek(today);
         calendarView.setItems(calendarDates);
         calendarView.setCellFactory(listView -> new SectionListViewCell());

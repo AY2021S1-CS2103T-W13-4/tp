@@ -13,15 +13,15 @@ import trackitnus.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls.
- * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such,
- * adding and updating of contacts uses Module#isSameModule(Module) for equality so as to ensure that
+ * A module is considered unique by comparing using {@code Module#hasSameCode(Module)}. As such,
+ * adding and updating of contacts uses Module#hasSameCode(Module) for equality so as to ensure that
  * the module being added or updated is unique in terms of identity in the UniqueModuleList.
  * However, the removal of a module uses Module#equals(Object) so
  * as to ensure that the contact with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see Module#isSameModule(Module)
+ * @see Module#hasSameCode(Module)
  */
 public class UniqueModuleList implements Iterable<Module> {
 
@@ -34,7 +34,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameModule);
+        return internalList.stream().anyMatch(toCheck::hasSameCode);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniqueModuleList implements Iterable<Module> {
             throw new ModuleNotFoundException();
         }
 
-        if (!target.isSameModule(editedModule) && contains(editedModule)) {
+        if (!target.hasSameCode(editedModule) && contains(editedModule)) {
             throw new DuplicateModuleException();
         }
 
@@ -128,7 +128,7 @@ public class UniqueModuleList implements Iterable<Module> {
     private boolean modulesAreUnique(List<Module> contacts) {
         for (int i = 0; i < contacts.size() - 1; i++) {
             for (int j = i + 1; j < contacts.size(); j++) {
-                if (contacts.get(i).isSameModule(contacts.get(j))) {
+                if (contacts.get(i).hasSameCode(contacts.get(j))) {
                     return false;
                 }
             }

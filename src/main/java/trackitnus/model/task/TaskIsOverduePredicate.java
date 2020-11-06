@@ -5,9 +5,6 @@ import java.util.function.Predicate;
 
 public class TaskIsOverduePredicate implements Predicate<Task> {
 
-    public TaskIsOverduePredicate() {
-    }
-
     @Override
     public boolean test(Task task) {
         LocalDate today = LocalDate.now();

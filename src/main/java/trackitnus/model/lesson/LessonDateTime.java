@@ -36,15 +36,15 @@ public class LessonDateTime {
     }
 
     public DayOfWeek getWeekday() {
-        return this.weekday;
+        return weekday;
     }
 
     public LocalTime getStartTime() {
-        return this.startTime;
+        return startTime;
     }
 
     public LocalTime getEndTime() {
-        return this.endTime;
+        return endTime;
     }
 
     /**
@@ -59,11 +59,11 @@ public class LessonDateTime {
         } else {
             LocalDate currentDate = LocalDate.now(Lesson.DEFAULT_TIME_ZONE);
             DayOfWeek currentWeekday = DayOfWeek.getLessonWeekDay(currentDate);
-            Integer currentToThis = DayOfWeek.distanceBetweenTwoDay(currentWeekday, this.getWeekday());
+            Integer currentToThis = DayOfWeek.distanceBetweenTwoDay(currentWeekday, getWeekday());
             Integer currentToOther = DayOfWeek.distanceBetweenTwoDay(currentWeekday, other.getWeekday());
             int result = currentToThis.compareTo(currentToOther);
             return result == 0
-                ? this.getStartTime().compareTo(other.getStartTime())
+                ? getStartTime().compareTo(other.getStartTime())
                 : result;
         }
     }

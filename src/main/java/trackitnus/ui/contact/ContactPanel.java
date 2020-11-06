@@ -15,10 +15,8 @@ import trackitnus.ui.UiPart;
 public class ContactPanel extends UiPart<Region> {
     private static final String FXML = "Contact/ContactPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactPanel.class);
-    private final int defaultRowHeight = 50;
-    private final int paddingHeight = 10;
-    private final ContactListPanel contactListPanel;
-    private final ObservableList<Contact> contacts;
+    private static final int DEFAULT_ROW_HEIGHT = 50;
+    private static final int PADDING_HEIGHT = 10;
 
     @FXML
     private StackPane contactListPanelPlaceholder;
@@ -28,13 +26,12 @@ public class ContactPanel extends UiPart<Region> {
      */
     public ContactPanel(ObservableList<Contact> contactList) {
         super(FXML);
-        contacts = contactList;
 
         // Allow height of lists to update automatically
-        contactListPanelPlaceholder.prefHeightProperty().bind(Bindings.size(contacts)
-            .multiply(defaultRowHeight).add(paddingHeight));
+        contactListPanelPlaceholder.prefHeightProperty().bind(Bindings.size(contactList)
+            .multiply(DEFAULT_ROW_HEIGHT).add(PADDING_HEIGHT));
 
-        contactListPanel = new ContactListPanel(contacts);
+        ContactListPanel contactListPanel = new ContactListPanel(contactList);
         contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
     }
 

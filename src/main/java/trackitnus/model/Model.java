@@ -12,7 +12,6 @@ import trackitnus.logic.commands.exceptions.CommandException;
 import trackitnus.model.commons.Code;
 import trackitnus.model.contact.Contact;
 import trackitnus.model.lesson.Lesson;
-import trackitnus.model.lesson.Type;
 import trackitnus.model.module.Module;
 import trackitnus.model.task.Task;
 
@@ -298,10 +297,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredLessonList(Predicate<Lesson> predicate);
-
-    Optional<Lesson> getLesson(Code code, Type type);
-
-    void sortLesson();
 
     /**
      * set the predicates all all filtered list to be false

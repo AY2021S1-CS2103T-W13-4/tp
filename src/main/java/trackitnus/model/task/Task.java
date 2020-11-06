@@ -103,6 +103,6 @@ public class Task {
      * This methods is here for to act as a compatibility layer for UniqueTaskList
      */
     public boolean isSameTask(Task task) {
-        return this.equals(task);
+        return equals(task);
     }
 }
