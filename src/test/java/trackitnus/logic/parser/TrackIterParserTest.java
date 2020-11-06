@@ -24,7 +24,7 @@ public class TrackIterParserTest {
     private final TrackIterParser parser = new TrackIterParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseContactCommand_add() throws Exception {
         Contact contact = new ContactBuilder().build();
         AddContactCommand command = (AddContactCommand) parser.parseCommand(Contact.TYPE
             + " " + ContactUtil.getAddCommand(contact));
@@ -32,7 +32,7 @@ public class TrackIterParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseContactCommand_delete() throws Exception {
         DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
             Contact.TYPE + " " + DeleteContactCommand.COMMAND_WORD + " " + TypicalIndexes.INDEX_FIRST
                 .getOneBased());
@@ -40,7 +40,7 @@ public class TrackIterParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseContactCommand_edit() throws Exception {
         Contact contact = new ContactBuilder().build();
         EditContactCommand.EditContactDescriptor descriptor = new EditContactDescriptorBuilder(contact).build();
         EditContactCommand command = (EditContactCommand) parser.parseCommand(Contact.TYPE + " "
