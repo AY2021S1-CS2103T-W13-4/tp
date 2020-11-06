@@ -13,7 +13,7 @@ import trackitnus.model.Model;
 import trackitnus.model.contact.Contact;
 
 /**
- * Deletes a contact identified using it's displayed index from the address book.
+ * Deletes a contact identified using it's displayed index from the app.
  */
 public final class DeleteContactCommand extends Command {
 

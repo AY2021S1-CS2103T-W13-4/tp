@@ -14,7 +14,7 @@ import trackitnus.model.Model;
 import trackitnus.model.contact.Contact;
 
 /**
- * Adds a contact to the address book.
+ * Adds a contact to the app.
  */
 public final class AddContactCommand extends Command {
 

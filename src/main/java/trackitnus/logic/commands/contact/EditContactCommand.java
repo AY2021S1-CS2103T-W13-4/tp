@@ -27,7 +27,7 @@ import trackitnus.model.contact.Phone;
 import trackitnus.model.tag.Tag;
 
 /**
- * Edits the details of an existing contact in the address book.
+ * Edits the details of an existing contact in the app.
  */
 public final class EditContactCommand extends Command {
 

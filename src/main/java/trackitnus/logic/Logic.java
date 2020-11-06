@@ -137,7 +137,7 @@ public interface Logic {
     Index getLessonIndex(Lesson lesson) throws CommandException;
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TrackIter file path.
      */
     Path getTrackIterFilePath();
 

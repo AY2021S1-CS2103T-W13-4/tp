@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import trackitnus.commons.util.AppUtil;
 
 /**
- * Represents a Contact's name in the address book.
+ * Represents a Contact's name in the app.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

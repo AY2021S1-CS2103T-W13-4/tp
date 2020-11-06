@@ -10,7 +10,7 @@ import trackitnus.model.commons.Name;
 
 
 /**
- * Represents a Task in the address book.
+ * Represents a Task in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Task {

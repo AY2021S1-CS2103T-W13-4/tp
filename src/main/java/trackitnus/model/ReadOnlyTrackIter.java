@@ -7,7 +7,7 @@ import trackitnus.model.module.Module;
 import trackitnus.model.task.Task;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a TrackIter
  */
 public interface ReadOnlyTrackIter {
 

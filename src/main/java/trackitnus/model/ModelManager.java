@@ -34,7 +34,7 @@ import trackitnus.model.task.TaskIsOverduePredicate;
 import trackitnus.model.task.TaskOnDatePredicate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the app data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

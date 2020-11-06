@@ -16,7 +16,7 @@ public class UpcomingLessonCard extends LessonCard {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on TrackIter level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The Issue on Address Book level 4</a>
      */
 
     @FXML

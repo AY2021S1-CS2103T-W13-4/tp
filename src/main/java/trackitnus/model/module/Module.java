@@ -10,7 +10,7 @@ import trackitnus.model.commons.Code;
 import trackitnus.model.commons.Name;
 
 /**
- * Represents a Lesson in the address book.
+ * Represents a Lesson in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Module {

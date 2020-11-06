@@ -11,7 +11,7 @@ import trackitnus.model.commons.Name;
 import trackitnus.model.tag.Tag;
 
 /**
- * Represents a Contact in the address book.
+ * Represents a Contact in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Contact {

@@ -102,7 +102,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
     //=========== Module ================================================================================
 
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the app.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -110,8 +110,8 @@ public final class TrackIter implements ReadOnlyTrackIter {
     }
 
     /**
-     * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * Adds a module to the app.
+     * The module must not already exist in the app.
      */
     public void addModule(Module p) {
         modules.add(p);
@@ -119,9 +119,9 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the app.
      * The module identity of {@code editedModule} must not
-     * be the same as another existing module in the address book.
+     * be the same as another existing module in the app.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -131,7 +131,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Removes {@code key} from this {@code TrackIter}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the app.
      */
     public void removeModule(Module key) {
         modules.remove(key);
@@ -140,7 +140,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
     //=========== Contact ================================================================================
 
     /**
-     * Returns true if a contact with the same identity as {@code contact} exists in the address book.
+     * Returns true if a contact with the same identity as {@code contact} exists in the app.
      */
     public boolean hasContact(Contact contact) {
         requireNonNull(contact);
@@ -148,8 +148,8 @@ public final class TrackIter implements ReadOnlyTrackIter {
     }
 
     /**
-     * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * Adds a module to the app.
+     * The module must not already exist in the app.
      */
     public void addContact(Contact p) {
         contacts.add(p);
@@ -157,9 +157,9 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Replaces the given contact {@code target} in the list with {@code editedContact}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the app.
      * The contact identity of {@code editedContact} must not
-     * be the same as another existing contact in the address book.
+     * be the same as another existing contact in the app.
      */
     public void setContact(Contact target, Contact editedContact) {
         requireNonNull(editedContact);
@@ -169,7 +169,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Removes {@code key} from this {@code TrackIter}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the app.
      */
     public void removeContact(Contact key) {
         contacts.remove(key);
@@ -179,7 +179,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
     //=========== Task ================================================================================
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the app.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -187,8 +187,8 @@ public final class TrackIter implements ReadOnlyTrackIter {
     }
 
     /**
-     * Adds a task to the address book.
-     * The task must not already exist in the address book.
+     * Adds a task to the app.
+     * The task must not already exist in the app.
      */
     public void addTask(Task p) {
         tasks.add(p);
@@ -196,9 +196,9 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the app.
      * The task identity of {@code editedTask} must not
-     * be the same as another existing task in the address book.
+     * be the same as another existing task in the app.
      */
     public void setTask(Task target, Task editedTask) {
         requireNonNull(editedTask);
@@ -208,7 +208,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Removes {@code key} from this {@code TrackIter}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the app.
      */
     public void removeTask(Task key) {
         tasks.remove(key);
@@ -217,7 +217,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
     //=========== Lesson ================================================================================
 
     /**
-     * Returns true if a lesson with the same identity as {@code lesson} exists in the address book.
+     * Returns true if a lesson with the same identity as {@code lesson} exists in the app.
      */
     public boolean hasLesson(Lesson lesson) {
         requireNonNull(lesson);
@@ -225,8 +225,8 @@ public final class TrackIter implements ReadOnlyTrackIter {
     }
 
     /**
-     * Adds a lesson to the address book.
-     * The lesson must not already exist in the address book.
+     * Adds a lesson to the app.
+     * The lesson must not already exist in the app.
      */
     public void addLesson(Lesson p) {
         lessons.add(p);
@@ -234,9 +234,9 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Replaces the given lesson {@code target} in the list with {@code editedLesson}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the app.
      * The lesson identity of {@code editedLesson} must not
-     * be the same as another existing lesson in the address book.
+     * be the same as another existing lesson in the app.
      */
     public void setLesson(Lesson target, Lesson editedLesson) {
         requireNonNull(editedLesson);
@@ -246,7 +246,7 @@ public final class TrackIter implements ReadOnlyTrackIter {
 
     /**
      * Removes {@code key} from this {@code TrackIter}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the app.
      */
     public void removeLesson(Lesson key) {
         lessons.remove(key);
