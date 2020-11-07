@@ -13,12 +13,16 @@ import trackitnus.model.task.Task;
 import trackitnus.ui.UiPart;
 import trackitnus.ui.task.OverdueFutureTaskCard;
 
-public class CalendarSectionCard extends UiPart<Region> {
+/**
+ * A UI component that displays information of a {@code UpcomingSection}
+ */
+public class UpcomingSectionCard extends UiPart<Region> {
     private static final String FXML = "Upcoming/CalendarSectionCard.fxml";
-
-    public final CalendarSection calendarSection;
     private static final int TASK_ROW_HEIGHT = 45;
+    public final UpcomingSection section;
     private final Logic logic;
+    private String title;
+
     @FXML
     private ListView<Task> taskListView;
     @FXML
@@ -27,22 +31,25 @@ public class CalendarSectionCard extends UiPart<Region> {
     /**
      * Constructor for a section in the calendar
      *
-     * @param calendarSection
-     * @param taskList
-     * @param logic
+     * @param section  a section in the calendar
+     * @param taskList the tasklist to display
+     * @param logic    logic
      */
-    public CalendarSectionCard(CalendarSection calendarSection, ObservableList<Task> taskList, Logic logic) {
+    public UpcomingSectionCard(UpcomingSection section, ObservableList<Task> taskList, Logic logic) {
         super(FXML);
-        this.calendarSection = calendarSection;
+        this.section = section;
         this.logic = logic;
-        sectionTitle.setText(calendarSection.getTitle());
-        if (calendarSection.getTitle().equals("Overdue")) {
+        sectionTitle.setText(section.getTitle());
+        if (section.getTitle().equals("Overdue")) {
             sectionTitle.setStyle("-fx-text-fill: #D53636");
         }
+        setUpTaskView(taskList);
+    }
+
+    private void setUpTaskView(ObservableList<Task> taskList) {
         taskListView.prefHeightProperty().bind(Bindings.size(taskList).multiply(TASK_ROW_HEIGHT).add(10));
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
-
     }
 
     @Override
@@ -51,11 +58,15 @@ public class CalendarSectionCard extends UiPart<Region> {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
-        return other instanceof CalendarSectionCard;
+        if (!(other instanceof UpcomingSectionCard)) {
+            return false;
+        }
 
         // state check
+        UpcomingSectionCard card = (UpcomingSectionCard) other;
+        return title.equals(card.title);
+
     }
 
     class TaskListViewCell extends ListCell<Task> {

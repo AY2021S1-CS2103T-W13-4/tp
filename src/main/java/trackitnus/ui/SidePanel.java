@@ -169,6 +169,7 @@ public class SidePanel extends UiPart<Region> {
                     moduleSection.getChildren().add(moduleCircle);
                     moduleSection.getChildren().add(updatedButton);
                     setGraphic(moduleSection);
+
                 } catch (CommandException e) {
                     e.printStackTrace();
                 }
