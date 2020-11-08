@@ -17,8 +17,8 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteLessonCommand parse(String args) throws ParseException {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteLessonCommand(index);
+        Index index = ParserUtil.parseIndex(args);
+        return new DeleteLessonCommand(index);
     }
 
 }

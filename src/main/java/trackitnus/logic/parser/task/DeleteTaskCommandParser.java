@@ -15,7 +15,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteTaskCommand(index);
+        Index index = ParserUtil.parseIndex(args);
+        return new DeleteTaskCommand(index);
     }
 }

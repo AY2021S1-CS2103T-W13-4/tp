@@ -9,35 +9,37 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
-
-<ListView fx:id="HelpPanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<ListView xmlns:fx="http://javafx.com/fxml/1" fx:id="HelpPanel" xmlns="http://javafx.com/javafx/8">
     <VBox styleClass="help_panel">
         <padding>
-            <Insets bottom="1" left="15" right="5" top="1" />
+            <Insets bottom="1" left="15" right="5" top="1"/>
         </padding>
-        <Label styleClass="module_big_label" text="Command Summary" />
-        <Line endX="500" style="-fx-stroke: #8C8C89" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="6.0" stroke="#ffffff00" strokeType="INSIDE" width="214.0" />
-        <Label styleClass="help_intro" text="For more info, refer to User Guide:" />
+        <Label styleClass="module_big_label" text="Command Summary"/>
+        <Line endX="500" style="-fx-stroke: #8C8C89"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="6.0" stroke="#ffffff00" strokeType="INSIDE"
+                   width="214.0"/>
+        <Label styleClass="help_intro" text="For more info, refer to User Guide:"/>
         <HBox>
             <Label fx:id="helpMessage" text="Label" wrapText="true" style="-fx-text-fill: #68C2E8">
                 <HBox.margin>
-                    <Insets right="5.0" />
+                    <Insets right="5.0"/>
                 </HBox.margin>
-            <padding>
-               <Insets top="7.0" />
-            </padding>
+                <padding>
+                    <Insets top="7.0"/>
+                </padding>
             </Label>
-            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" style="-fx-font-size: 15" text="Copy URL">
+            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" style="-fx-font-size: 15"
+                    text="Copy URL">
                 <HBox.margin>
-                    <Insets left="5.0" />
+                    <Insets left="5.0"/>
                 </HBox.margin>
             </Button>
         </HBox>
 
         <TableView fx:id="helpCardTableView">
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin></TableView>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </TableView>
     </VBox>
 </ListView>
