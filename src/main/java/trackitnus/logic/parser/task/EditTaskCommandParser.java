@@ -7,14 +7,12 @@ import static trackitnus.logic.parser.CliSyntax.PREFIX_DATE;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_NAME;
 import static trackitnus.logic.parser.CliSyntax.PREFIX_REMARK;
 
-import trackitnus.commons.core.Messages;
 import trackitnus.commons.core.index.Index;
 import trackitnus.logic.commands.task.EditTaskCommand;
 import trackitnus.logic.parser.ArgumentMultimap;
 import trackitnus.logic.parser.ArgumentTokenizer;
 import trackitnus.logic.parser.Parser;
 import trackitnus.logic.parser.ParserUtil;
-import trackitnus.logic.parser.exceptions.InvalidIndexException;
 import trackitnus.logic.parser.exceptions.ParseException;
 
 /**
@@ -33,16 +31,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATE, PREFIX_CODE, PREFIX_REMARK);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (InvalidIndexException iie) {
-            throw new InvalidIndexException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
-        }
-
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editTaskDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));

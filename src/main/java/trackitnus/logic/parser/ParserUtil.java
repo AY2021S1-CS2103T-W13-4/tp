@@ -40,10 +40,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws InvalidIndexException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isDigitSequence(trimmedIndex)) {
-            throw new ParseException(Messages.MESSAGE_NOT_DIGIT_SEQUENCE);
+            throw new InvalidIndexException(Messages.MESSAGE_NOT_DIGIT_SEQUENCE);
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new InvalidIndexException(Messages.MESSAGE_INVALID_INDEX);

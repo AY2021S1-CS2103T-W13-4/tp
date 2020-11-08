@@ -35,15 +35,8 @@ public class EditLessonCommandParser implements Parser<EditLessonCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args,
                 PREFIX_CODE, PREFIX_TYPE, PREFIX_DATE, PREFIX_ADDRESS);
-        Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                EditLessonCommand.MESSAGE_USAGE), pe);
-        }
-
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         EditLessonDescriptor editLessonDescriptor = new EditLessonDescriptor();
 
         if (argMultimap.getValue(PREFIX_CODE).isPresent()) {

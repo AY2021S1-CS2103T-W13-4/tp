@@ -12,14 +12,12 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import trackitnus.commons.core.Messages;
 import trackitnus.commons.core.index.Index;
 import trackitnus.logic.commands.contact.EditContactCommand;
 import trackitnus.logic.parser.ArgumentMultimap;
 import trackitnus.logic.parser.ArgumentTokenizer;
 import trackitnus.logic.parser.Parser;
 import trackitnus.logic.parser.ParserUtil;
-import trackitnus.logic.parser.exceptions.InvalidIndexException;
 import trackitnus.logic.parser.exceptions.ParseException;
 import trackitnus.model.tag.Tag;
 
@@ -39,17 +37,7 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (InvalidIndexException iie) {
-            throw new InvalidIndexException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe);
-        }
-
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         EditContactCommand.EditContactDescriptor editContactDescriptor = new EditContactCommand.EditContactDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
